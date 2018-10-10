@@ -14,12 +14,7 @@ namespace BoVoyageFinalProject.Models
 
         [ForeignKey("CustomerId")]
         public Customer Customer { get; set; }
-
-        public int TravellerId { get; set; }
-
-        
-        public List<Traveller> Travellers { get; set; }
-
+                
         public int TravelId { get; set; }
 
         [ForeignKey("TravelId")]
@@ -44,19 +39,9 @@ namespace BoVoyageFinalProject.Models
         [ForeignKey("InsuranceId")]
         public Insurance Insurance { get; set; }
 
-        public enum BookingFileState
-        {
-            PENDING,
-            INPROGRESS,
-            DENIED,
-            GRANTED
-        }
+        public BookingFileState BookingFileState { get; set; }
 
-        public enum BookingFileCancellationReason
-        {
-            CUSTOMER,
-            UNAVAILABLEPLACES
-        }
+        
 
         public void GetTotalPrice()
         {
@@ -80,5 +65,19 @@ namespace BoVoyageFinalProject.Models
         public ICollection<Traveller> Travellers { get; set; }
 
         public ICollection<Insurance> Insurances { get; set; }
+    }
+
+    public enum BookingFileState
+    {
+        PENDING,
+        INPROGRESS,
+        DENIED,
+        GRANTED
+    }
+
+    public enum BookingFileCancellationReason
+    {
+        CUSTOMER,
+        UNAVAILABLEPLACES
     }
 }
