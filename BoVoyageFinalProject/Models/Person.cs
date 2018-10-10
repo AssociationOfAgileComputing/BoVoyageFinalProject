@@ -5,9 +5,9 @@ using System.Web;
 
 namespace BoVoyageFinalProject.Models
 {
-	public abstract class Person
+	public abstract class Person : BaseModel
 	{
-		public int Id { get; set; }
+		
 
 
 	}
