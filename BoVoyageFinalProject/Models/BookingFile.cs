@@ -36,11 +36,9 @@ namespace BoVoyageFinalProject.Models
         public decimal PricePerPerson { get; set; }
 
         [Display(Name = "Prix total")]
-        [StringLength(10)]
         public decimal TotalPrice { get; set; }
 
         [Display(Name = "Nombre de participants")]
-        [StringLength(2)]
         public int TravellersNumber { get; set; }
 
         public int? InsuranceId { get; set; }
