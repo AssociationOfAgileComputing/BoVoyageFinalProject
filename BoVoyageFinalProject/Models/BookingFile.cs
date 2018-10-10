@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -22,12 +23,26 @@ namespace BoVoyageFinalProject.Models
 		[ForeignKey("TravelId")]
 		public Travel Travel { get; set; }
 
+		[Required]
+		[Display(Name = "Numéro de carte de crédit")]
+		[StringLength(16)]
+		//[DataType(DataType.CreditCard)]
 		public string CreditCardNumber { get; set; }
 
+
+		[Required]
+		[Display(Name = "Prix par personne")]
+		[StringLength(6)]
 		public decimal PricePerPerson { get; set; }
 
+	
+		[Display(Name = "Prix total")]
+		[StringLength(10)]
 		public decimal TotalPrice { get; set; }
 
+		
+		[Display(Name = "Nombre de participants")]
+		[StringLength(2)]
 		public int TravellersNumber { get; set; }
 
 		public int? InsuranceId { get; set; }
@@ -67,6 +82,13 @@ namespace BoVoyageFinalProject.Models
 		{
 
 		}
+
+		public ICollection<Customer> Customers { get; set; }
+
+		public ICollection<Traveller> Travellers { get; set; }
+
+		public ICollection<Insurance> Insurances { get; set; }
+
 
 	}
 }
