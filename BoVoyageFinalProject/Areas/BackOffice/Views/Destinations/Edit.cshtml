@@ -93,5 +93,24 @@
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
+    @section scripts{
+        <script>
+
+     $('a.delete').click(function () {
+                var idPicture = $(this).data("id");
+                //alert(idPicture);
+                $.ajax({
+                    url: '@Url.Action("deletePicture", "Destinations")',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { id: idPicture },
+                    success: function (obj) {
+                        alert("l'image " + obj.Name + " a été supprimée.");
+                        $("#div-" + idPicture).fadeOut();
+                    }
+                });
+            });
+        </script>>
+    }
 </body>
 </html>
