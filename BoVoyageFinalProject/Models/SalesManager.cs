@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BoVoyageFinalProject.Models
 {
-    public class SalesManager:Person
+    public class SalesManager : User
     {
 
     }
