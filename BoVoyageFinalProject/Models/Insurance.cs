@@ -7,5 +7,6 @@ namespace BoVoyageFinalProject.Models
 {
 	public class Insurance
 	{
+		public decimal InsuranceCost { get; set; }
 	}
 }
