@@ -7,7 +7,7 @@ using System.Web;
 
 namespace BoVoyageFinalProject.Models
 {
-    public class Customer : Person
+    public class Customer : User
     {
         [Required(ErrorMessage ="Le champ{0} est obligatoire.")]
         [Display(Name ="Date de naissance")]
