@@ -140,6 +140,22 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
+        [HttpPost]
+        public ActionResult DeletePicture(int? id)
+        {
+            if (id == null)
+                return HttpNotFound();
+
+            var picture = db.DestinationPictures.Find(id);
+
+            if (picture == null)
+                return HttpNotFound();
+
+            db.DestinationPictures.Remove(picture);
+            db.SaveChanges();
+            return Json(picture);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
