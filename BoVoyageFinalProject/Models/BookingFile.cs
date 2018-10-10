@@ -27,8 +27,6 @@ namespace BoVoyageFinalProject.Models
 
         [Required]
         [Display(Name = "Numéro de carte de crédit")]
-        [StringLength(16)]
-        //[DataType(DataType.CreditCard)]
         public string CreditCardNumber { get; set; }
 
         [Required]

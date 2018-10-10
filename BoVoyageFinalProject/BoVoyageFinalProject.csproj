@@ -154,6 +154,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\TravelAgenciesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\BoVoyageDbContext.cs" />
@@ -203,6 +204,11 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="Areas\BackOffice\Views\web.config" />
     <Content Include="Documents\BoVoyage_ProductBacklog.xlsx" />
+    <Content Include="Areas\BackOffice\Views\TravelAgencies\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TravelAgencies\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TravelAgencies\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TravelAgencies\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TravelAgencies\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
@@ -396,7 +402,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\BackOffice\Controllers\" />
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\BackOffice\Views\Shared\" />
     <Folder Include="Filters\" />
