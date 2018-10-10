@@ -34,12 +34,10 @@ namespace BoVoyageFinalProject.Models
         [Display(Name = "Nombre de participants")]
         public int TravellersNumber { get; set; }
 
-        public int? InsuranceId { get; set; }
-
-        [ForeignKey("InsuranceId")]
-        public Insurance Insurance { get; set; }
-
         public BookingFileState BookingFileState { get; set; }
+
+        [Display(Name = "Faites vous partie du voyage ?")]
+        public bool IsCustomerTraveller { get; set; }
 
         
 
@@ -59,8 +57,6 @@ namespace BoVoyageFinalProject.Models
         public void BookingCancellation(BookingFileCancellationReason reason)
         {
         }
-
-        public ICollection<Customer> Customers { get; set; }
 
         public ICollection<Traveller> Travellers { get; set; }
 
