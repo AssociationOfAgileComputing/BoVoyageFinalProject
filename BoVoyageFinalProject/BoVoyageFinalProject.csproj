@@ -155,9 +155,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Data\BoVoyageDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Destination.cs" />
     <Compile Include="Models\DestinationPicture.cs" />
     <Compile Include="Models\BaseModel.cs" />
@@ -395,10 +397,8 @@
     <Folder Include="Areas\BackOffice\Controllers\" />
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\BackOffice\Views\Shared\" />
-    <Folder Include="Data\" />
     <Folder Include="Filters\" />
     <Folder Include="Helpers\" />
-    <Folder Include="Migrations\" />
     <Folder Include="Tools\" />
     <Folder Include="Validators\" />
   </ItemGroup>

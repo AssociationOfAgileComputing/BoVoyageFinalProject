@@ -12,6 +12,6 @@ namespace BoVoyageFinalProject.Models
         [Display(Name = "Agence")]
         public string Name { get; set; }
 
-        public ICollection<Travel> Travel { get; set; }
+        public ICollection<Travel> Travels { get; set; }
     }
 }
