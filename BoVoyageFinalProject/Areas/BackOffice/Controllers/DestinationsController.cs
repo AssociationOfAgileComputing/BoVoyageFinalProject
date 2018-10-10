@@ -67,7 +67,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Destination destination = db.Destinations.Find(id);
+            Destination destination = db.Destinations.Include("Pictures").SingleOrDefault(x => x.ID == id);
             if (destination == null)
             {
                 return HttpNotFound();
