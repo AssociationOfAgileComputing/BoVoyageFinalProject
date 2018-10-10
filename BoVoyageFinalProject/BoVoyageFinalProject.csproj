@@ -209,6 +209,8 @@
     <Content Include="Areas\BackOffice\Views\TravelAgencies\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\TravelAgencies\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\TravelAgencies\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_Layout.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
@@ -403,7 +405,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
-    <Folder Include="Areas\BackOffice\Views\Shared\" />
     <Folder Include="Filters\" />
     <Folder Include="Helpers\" />
     <Folder Include="Validators\" />
@@ -418,7 +419,9 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>

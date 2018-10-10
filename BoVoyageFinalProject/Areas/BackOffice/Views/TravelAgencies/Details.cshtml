@@ -1,7 +1,7 @@
 ﻿@model BoVoyageFinalProject.Models.TravelAgency
 
 @{
-    Layout = null;
+    ViewBag.Title = "Details Agence";
 }
 
 <!DOCTYPE html>
@@ -19,11 +19,10 @@
             <dt>
                 @Html.DisplayNameFor(model => model.Name)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Name)
             </dd>
-    
         </dl>
     </div>
     <p>
