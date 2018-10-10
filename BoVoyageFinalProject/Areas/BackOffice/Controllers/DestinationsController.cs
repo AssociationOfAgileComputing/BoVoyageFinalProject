@@ -1,13 +1,14 @@
-﻿using System;
+﻿using BoVoyageFinalProject.Data;
+using BoVoyageFinalProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BoVoyageFinalProject.Data;
-using BoVoyageFinalProject.Models;
 
 namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 {
@@ -43,7 +44,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         }
 
         // POST: BackOffice/Destinations/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -75,7 +76,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         }
 
         // POST: BackOffice/Destinations/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -114,6 +115,29 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
             db.Destinations.Remove(destination);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult AddPicture(HttpPostedFileBase picture, int id)
+        {
+            if (picture?.ContentLength > 0)
+            {
+                var destination = new DestinationPicture();
+                destination.ContentType = picture.ContentType;
+                destination.Name = picture.FileName;
+                destination.DestinationID = id;
+
+                using (var reader = new BinaryReader(picture.InputStream))
+                {
+                    destination.Content = reader.ReadBytes(picture.ContentLength);
+                }
+
+                db.DestinationPictures.Add(destination);
+                db.SaveChanges();
+
+                return RedirectToAction("Edit", "Destinations", new { id = id });
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         protected override void Dispose(bool disposing)
