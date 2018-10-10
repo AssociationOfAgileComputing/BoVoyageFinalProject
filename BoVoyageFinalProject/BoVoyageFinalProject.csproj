@@ -172,6 +172,7 @@
     <Compile Include="Models\SalesManager.cs" />
     <Compile Include="Models\Traveller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\Message.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -399,7 +400,6 @@
     <Folder Include="Areas\BackOffice\Views\Shared\" />
     <Folder Include="Filters\" />
     <Folder Include="Helpers\" />
-    <Folder Include="Tools\" />
     <Folder Include="Validators\" />
   </ItemGroup>
   <ItemGroup>
