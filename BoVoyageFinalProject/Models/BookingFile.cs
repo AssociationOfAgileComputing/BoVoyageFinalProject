@@ -17,8 +17,8 @@ namespace BoVoyageFinalProject.Models
 
         public int TravellerId { get; set; }
 
-        [ForeignKey("TravellerId")]
-        public Traveller Traveller { get; set; }
+        
+        public List<Traveller> Travellers { get; set; }
 
         public int TravelId { get; set; }
 
