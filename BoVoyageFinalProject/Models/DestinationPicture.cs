@@ -21,9 +21,9 @@ namespace BoVoyageFinalProject.Models
         public byte[] Content { get; set; }
 
         [Required]
-        public int BookingFileID { get; set; }
+        public int DestinationID { get; set; }
 
-        [ForeignKey("BookingFileID")]
-        public BookingFile BookingFile { get; set; }
+        [ForeignKey("DestinationID")]
+        public Destination Destination { get; set; }
     }
 }
