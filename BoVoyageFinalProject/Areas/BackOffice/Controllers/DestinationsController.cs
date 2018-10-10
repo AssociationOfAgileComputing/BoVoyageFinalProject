@@ -67,7 +67,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Destination destination = db.Destinations.Find(id);
+            Destination destination = db.Destinations.Include("Pictures").SingleOrDefault(x => x.ID == id);
             if (destination == null)
             {
                 return HttpNotFound();
@@ -138,6 +138,22 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
                 return RedirectToAction("Edit", "Destinations", new { id = id });
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        [HttpPost]
+        public ActionResult DeletePicture(int? id)
+        {
+            if (id == null)
+                return HttpNotFound();
+
+            var picture = db.DestinationPictures.Find(id);
+
+            if (picture == null)
+                return HttpNotFound();
+
+            db.DestinationPictures.Remove(picture);
+            db.SaveChanges();
+            return Json(picture);
         }
 
         protected override void Dispose(bool disposing)
