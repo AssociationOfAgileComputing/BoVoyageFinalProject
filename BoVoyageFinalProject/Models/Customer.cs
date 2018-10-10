@@ -15,13 +15,35 @@ namespace BoVoyageFinalProject.Models
         [Column(TypeName ="datetime2")]
         public DateTime BirthDate { get; set; }
 
-        [CreditCard(ErrorMessage="Numéro de carte invalide.")]
-        public string CreditCardNumber { get; set; }
-
-
         [Required]
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
+
+        [Required]
+        [Display(Name ="Adresse ligne 1")]
+        [StringLength(100)]
+        public string AddressLine1 { get; set; }
+
+        [Display(Name = "Adresse ligne 2")]
+        [StringLength(100)]
+        public string AddressLine2 { get; set; }
+
+        [Required]
+        [Display(Name = "Code Postal")]
+        [DataType(DataType.PostalCode)]
+        [StringLength(10)]
+        public string ZIPCode { get; set; }
+
+        [Required]
+        [Display(Name ="Ville")]
+        [StringLength(50)]
+        public string City { get; set; }
+
+
+        [Required]
+        [Display(Name ="Pays")]
+        [StringLength(50)]
+        public string Country { get; set; }
 
         [Display(Name ="Dossiers de réservation")]
         public ICollection<BookingFile>BookingFiles { get; set; }

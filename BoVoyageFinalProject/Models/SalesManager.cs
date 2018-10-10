@@ -7,5 +7,6 @@ namespace BoVoyageFinalProject.Models
 {
     public class SalesManager:Person
     {
+
     }
 }
