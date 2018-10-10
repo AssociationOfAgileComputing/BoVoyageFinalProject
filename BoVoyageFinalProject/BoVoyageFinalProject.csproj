@@ -154,6 +154,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\DestinationsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\TravelAgenciesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -211,6 +212,11 @@
     <Content Include="Areas\BackOffice\Views\TravelAgencies\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\_ViewStart.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Destinations\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Destinations\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Destinations\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Destinations\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Destinations\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
