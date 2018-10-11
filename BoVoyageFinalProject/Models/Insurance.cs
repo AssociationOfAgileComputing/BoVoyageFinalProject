@@ -9,7 +9,8 @@ namespace BoVoyageFinalProject.Models
 {
 	public class Insurance : BaseModel
 	{
-		public decimal InsuranceCost { get; set; }
+        [Display(Name = "Prix de l'assurance par personne")]
+        public decimal InsuranceCost { get; set; }
 
 		[Required]
 		[Display(Name = "Type d'assurance")]

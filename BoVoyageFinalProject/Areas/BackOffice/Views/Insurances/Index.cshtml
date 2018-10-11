@@ -1,19 +1,9 @@
 ﻿@model IEnumerable<BoVoyageFinalProject.Models.Insurance>
 
 @{
-    Layout = null;
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Ajouter une nouvelle assurance", "Create")
     </p>
     <table class="table">
         <tr>
@@ -35,13 +25,11 @@
                 @Html.DisplayFor(modelItem => item.InsuranceType)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                @Html.ActionLink("Modifier", "Edit", new { id=item.ID }) |
+                @Html.ActionLink("Détails", "Details", new { id=item.ID }) |
+                @Html.ActionLink("Supprimer", "Delete", new { id=item.ID })
             </td>
         </tr>
     }
     
     </table>
-</body>
-</html>
