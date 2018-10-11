@@ -14,11 +14,11 @@ namespace BoVoyageFinalProject.Models
 
         [Required]
         [Display(Name = "Pays")]
-        public string Pays { get; set; }
+        public string Country { get; set; }
 
         [Required]
         [Display(Name = "Region")]
-        public string Region { get; set; }
+        public string Area { get; set; }
 
         [StringLength(250)]
         [Display(Name = "description")]
