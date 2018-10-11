@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using BoVoyageFinalProject.Areas.BackOffice.Models;
+using BoVoyageFinalProject.Models;
+using BoVoyageFinalProject.Tools;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using BoVoyageFinalProject.Data;
-using BoVoyageFinalProject.Models;
 
 namespace BoVoyageFinalProject.Controllers
 {
     public class CustomersController : BaseController
     {
-        private BoVoyageDbContext db = new BoVoyageDbContext();
 
         // GET: Customers
         public ActionResult Index()
@@ -116,5 +112,62 @@ namespace BoVoyageFinalProject.Controllers
             return RedirectToAction("Index");
         }
 
+        // Customer Subscription
+        public ActionResult Subscribe()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Subscribe([Bind(Exclude = "ID")] Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                customer.Password = customer.Password.HashMD5();
+                db.Configuration.ValidateOnSaveEnabled = false;
+                db.Customers.Add(customer);
+                db.SaveChanges();
+                db.Configuration.ValidateOnSaveEnabled = true;
+                Display("Votre compte client a été créé avec succès.");
+                return RedirectToAction("index", "Home");
+            }
+            Display("Veuillez corriger les erreurs", MessageType.ERROR);
+            return View();
+        }
+
+        // Customer Login
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(AuthenticationLoginViewModels model)
+        {
+            var hash = model.Password.HashMD5();
+            var customer = db.Customers.SingleOrDefault(x => x.Mail == model.Mail && x.Password == hash);
+
+            if (customer == null)
+            {
+                Display("Login/Mot de passe incorrect", MessageType.ERROR);
+                return View();
+            }
+            else
+            {
+                Session["CUSTOMER"] = customer;
+                if (TempData["REDIRECT"] != null)
+                    return Redirect(TempData["REDIRECT"].ToString());
+
+                else
+                return RedirectToAction("Index", "Home", new { area = "" });
+            }
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Remove("CUSTOMER");
+            return RedirectToAction("Index", "Home", new { area = "" });
+        }
     }
 }
