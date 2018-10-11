@@ -154,9 +154,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\BookingFilesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DestinationsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\InsurancesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\TravelAgenciesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\TravelsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -230,11 +230,11 @@
     <Content Include="Areas\BackOffice\Views\Travels\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\Travels\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Travels\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\BookingFiles\Create.cshtml" />
-    <Content Include="Areas\BackOffice\Views\BookingFiles\Delete.cshtml" />
-    <Content Include="Areas\BackOffice\Views\BookingFiles\Details.cshtml" />
-    <Content Include="Areas\BackOffice\Views\BookingFiles\Edit.cshtml" />
-    <Content Include="Areas\BackOffice\Views\BookingFiles\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Insurances\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Insurances\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Insurances\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Insurances\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Insurances\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
