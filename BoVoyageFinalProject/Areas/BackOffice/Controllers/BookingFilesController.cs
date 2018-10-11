@@ -14,7 +14,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 {
     public class BookingFilesController : BaseController
     {
-        
+        private BoVoyageDbContext db = new BoVoyageDbContext();
 
         // GET: BackOffice/BookingFiles
         public ActionResult Index()
@@ -51,7 +51,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,CustomerId,TravelId,CreditCardNumber,TotalPrice,TravellersNumber,BookingFileState,IsCustomerTraveller")] BookingFile bookingFile)
+        public ActionResult Create([Bind(Include = "ID,CustomerId,TravelId,CreditCardNumber,TotalPrice,TravellersNumber,IsCustomerTraveller,BookingFileState,BookingFileCancellationReason")] BookingFile bookingFile)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,CustomerId,TravelId,CreditCardNumber,TotalPrice,TravellersNumber,BookingFileState,IsCustomerTraveller")] BookingFile bookingFile)
+        public ActionResult Edit([Bind(Include = "ID,CustomerId,TravelId,CreditCardNumber,TotalPrice,TravellersNumber,IsCustomerTraveller,BookingFileState,BookingFileCancellationReason")] BookingFile bookingFile)
         {
             if (ModelState.IsValid)
             {
@@ -126,7 +126,13 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
             return RedirectToAction("Index");
         }
 
-       //[HttpGet]
-	   //[Authentification ]
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

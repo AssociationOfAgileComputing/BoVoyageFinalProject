@@ -1,7 +1,7 @@
 ﻿@model BoVoyageFinalProject.Models.BookingFile
 
 @{
-    
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -57,6 +57,14 @@
             </dd>
     
             <dt>
+                @Html.DisplayNameFor(model => model.IsCustomerTraveller)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.IsCustomerTraveller)
+            </dd>
+    
+            <dt>
                 @Html.DisplayNameFor(model => model.BookingFileState)
             </dt>
     
@@ -65,11 +73,11 @@
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.IsCustomerTraveller)
+                @Html.DisplayNameFor(model => model.BookingFileCancellationReason)
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.IsCustomerTraveller)
+                @Html.DisplayFor(model => model.BookingFileCancellationReason)
             </dd>
     
         </dl>

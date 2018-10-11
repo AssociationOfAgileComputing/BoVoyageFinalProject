@@ -158,6 +158,7 @@
     <Compile Include="Areas\BackOffice\Controllers\BookingFilesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DestinationsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\InsurancesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\TravelAgenciesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\TravelsController.cs" />
     <Compile Include="Areas\BackOffice\Models\AuthenticationViewModels.cs" />
@@ -234,6 +235,11 @@
     <Content Include="Areas\BackOffice\Views\Travels\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\Travels\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Travels\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Insurances\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Insurances\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Insurances\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Insurances\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Insurances\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\BookingFiles\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\BookingFiles\Delete.cshtml" />
     <Content Include="Areas\BackOffice\Views\BookingFiles\Details.cshtml" />
