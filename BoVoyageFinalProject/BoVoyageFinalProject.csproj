@@ -166,10 +166,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810110926175_InitLocal.cs" />
-    <Compile Include="Migrations\201810110926175_InitLocal.Designer.cs">
-      <DependentUpon>201810110926175_InitLocal.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Destination.cs" />
     <Compile Include="Models\DestinationPicture.cs" />
@@ -453,11 +449,6 @@
     </None>
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810110926175_InitLocal.resx">
-      <DependentUpon>201810110926175_InitLocal.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
