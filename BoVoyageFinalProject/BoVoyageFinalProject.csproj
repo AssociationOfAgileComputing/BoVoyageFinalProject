@@ -245,6 +245,7 @@
     <Content Include="Areas\BackOffice\Views\BookingFiles\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\BookingFiles\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\BookingFiles\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authentication\Login.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
@@ -446,7 +447,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\BackOffice\Views\Authentication\" />
     <Folder Include="Helpers\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\BookingFiles\" />
