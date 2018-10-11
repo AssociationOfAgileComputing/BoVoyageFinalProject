@@ -24,6 +24,7 @@ namespace BoVoyageFinalProject.Models
 
         [Required]
         [Display(Name = "Place(s) Disponible(s)")]
+        [Range(0,int.MaxValue,ErrorMessage = "Valeur invalide")]
         public int SpaceAvailable { get; set; }
 
         [Required]
