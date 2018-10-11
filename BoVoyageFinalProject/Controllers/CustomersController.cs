@@ -43,16 +43,20 @@ namespace BoVoyageFinalProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,BirthDate,PhoneNumber,AddressLine1,AddressLine2,ZIPCode,City,Country,Email,Password,Title,FirstName,LastName")] Customer customer)
+        public ActionResult Create([Bind(Exclude = "ID")] Customer customer)
         {
             if (ModelState.IsValid)
             {
+                customer.Password = customer.Password.HashMD5();
+                db.Configuration.ValidateOnSaveEnabled = false;
                 db.Customers.Add(customer);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                db.Configuration.ValidateOnSaveEnabled = true;
+                Display("Votre compte client a été créé avec succès.");
+                return RedirectToAction("index", "Home");
             }
-
-            return View(customer);
+            Display("Veuillez corriger les erreurs", MessageType.ERROR);
+            return View();
         }
 
         // GET: Customers/Edit/5
@@ -112,30 +116,7 @@ namespace BoVoyageFinalProject.Controllers
             return RedirectToAction("Index");
         }
 
-        // Customer Subscription
-        public ActionResult Subscribe()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Subscribe([Bind(Exclude = "ID")] Customer customer)
-        {
-            if (ModelState.IsValid)
-            {
-                customer.Password = customer.Password.HashMD5();
-                db.Configuration.ValidateOnSaveEnabled = false;
-                db.Customers.Add(customer);
-                db.SaveChanges();
-                db.Configuration.ValidateOnSaveEnabled = true;
-                Display("Votre compte client a été créé avec succès.");
-                return RedirectToAction("index", "Home");
-            }
-            Display("Veuillez corriger les erreurs", MessageType.ERROR);
-            return View();
-        }
-
+       
         // Customer Login
         public ActionResult Login()
         {

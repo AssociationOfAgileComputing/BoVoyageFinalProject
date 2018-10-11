@@ -16,7 +16,8 @@ namespace BoVoyageFinalProject.Models
         public DateTime BirthDate { get; set; }
 
         [Required]
-        [DataType(DataType.PhoneNumber)]
+        [Display(Name ="Numéro de téléphone")]
+        [DataType(DataType.PhoneNumber,ErrorMessage ="Numéro de téléphone invalide")]
         public string PhoneNumber { get; set; }
 
         [Required]
@@ -30,7 +31,7 @@ namespace BoVoyageFinalProject.Models
 
         [Required]
         [Display(Name = "Code Postal")]
-        [DataType(DataType.PostalCode)]
+        [DataType(DataType.PostalCode, ErrorMessage ="Code Postal invalide")]
         [StringLength(10)]
         public string ZIPCode { get; set; }
 
