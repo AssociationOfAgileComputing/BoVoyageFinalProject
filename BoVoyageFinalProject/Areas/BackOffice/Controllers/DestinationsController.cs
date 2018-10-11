@@ -48,7 +48,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Continent,Pays,Region,Description")] Destination destination)
+        public ActionResult Create([Bind(Include = "ID,Continent,Country,Area,Description")] Destination destination)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Continent,Pays,Region,Description")] Destination destination)
+        public ActionResult Edit([Bind(Include = "ID,Continent,Country,Area,Description")] Destination destination)
         {
             if (ModelState.IsValid)
             {
