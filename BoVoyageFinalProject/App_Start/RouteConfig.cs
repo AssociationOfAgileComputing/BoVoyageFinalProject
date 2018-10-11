@@ -13,6 +13,20 @@ namespace BoVoyageFinalProject
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapMvcAttributeRoutes();
+
+            routes.MapRoute(
+                name: "AboutRoute",
+                url: "a-propos",
+                defaults: new { controller = "Home", action = "About" }
+                );
+
+            routes.MapRoute(
+                name: "ContactRoute",
+                url: "contact",
+                defaults: new { controller = "Home", action = "Contact" }
+                );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
