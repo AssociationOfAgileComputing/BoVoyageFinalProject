@@ -23,7 +23,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.DateGo, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.DateGo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.DateGo, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
                     @Html.ValidationMessageFor(model => model.DateGo, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -31,7 +31,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.DateBack, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.DateBack, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.DateBack, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
                     @Html.ValidationMessageFor(model => model.DateBack, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -81,3 +81,16 @@
     </div>
 </body>
 </html>
+@section scripts{
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/jquery.datetimepicker.js"></script>
+    <script>
+        $(function () {
+            $('#DateGo').datetimepicker({ lang: 'fr', format: 'd/m/y'});
+            $('#DateBack').datetimepicker({ lang: 'fr', format: 'd/m/y' });
+            tinymce.init({
+                selector: '#Description'
+            });
+        });
+    </script>
+} 
