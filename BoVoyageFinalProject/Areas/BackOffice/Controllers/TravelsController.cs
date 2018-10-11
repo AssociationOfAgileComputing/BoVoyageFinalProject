@@ -39,7 +39,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         // GET: BackOffice/Travels/Create
         public ActionResult Create()
         {
-            ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent");
+            ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Area");
             ViewBag.TravelAgencyID = new SelectList(db.TravelAgencys, "ID", "Name");
             return View();
         }
@@ -58,7 +58,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent", travel.DestinationID);
+            ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Area", travel.DestinationID);
             ViewBag.TravelAgencyID = new SelectList(db.TravelAgencys, "ID", "Name", travel.TravelAgencyID);
             return View(travel);
         }
@@ -75,7 +75,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent", travel.DestinationID);
+            ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Area", travel.DestinationID);
             ViewBag.TravelAgencyID = new SelectList(db.TravelAgencys, "ID", "Name", travel.TravelAgencyID);
             return View(travel);
         }
@@ -93,7 +93,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent", travel.DestinationID);
+            ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Area", travel.DestinationID);
             ViewBag.TravelAgencyID = new SelectList(db.TravelAgencys, "ID", "Name", travel.TravelAgencyID);
             return View(travel);
         }

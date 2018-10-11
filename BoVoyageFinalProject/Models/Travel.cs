@@ -45,5 +45,14 @@ namespace BoVoyageFinalProject.Models
 
         [ForeignKey("DestinationID")]
         public Destination Destination { get; set; }
+
+        [NotMapped]
+        public string TravelDetails
+        {
+            get
+            {
+                return string.Format("{0} - {1} | {2}", DateGo.ToString("dd/MM/yyyy"), DateBack.ToString("dd/MM/yyyy"), Destination.Area);
+            }
+        }
     }
 }
