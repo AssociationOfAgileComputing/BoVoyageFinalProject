@@ -1,14 +1,24 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var manager = Session["SALESMANAGER"] as BoVoyageFinalProject.Models.SalesManager;
+}
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title | BackOffice - Application de Gestion</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
-
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -19,19 +29,33 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("BoVoyage WEB", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li>@Html.ActionLink("Agence", "Index", "TravelAgencies")</li>
-					<li>@Html.ActionLink("Destination", "Index", "Destinations")</li>
-					<li>@Html.ActionLink("Voyage", "Index", "Travels")</li>
-					<li>@Html.ActionLink("Dossier de réservation", "Create", "BookingFiles")</li>
-					<li>@Html.ActionLink("Assurances", "Index", "Insurances")</li>
-					@*<li>@Html.ActionLink("Delete", "Delete", "TravelAgenciesController")</li>
-		<li>@Html.ActionLink("Details", "Details", "TravelAgenciesController")</li>
-		<li>@Html.ActionLink("Edit", "Edit", "TravelAgenciesController")</li>*@
-				</ul>
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Agence", "Index", "TravelAgencies")</li>
+                    <li>@Html.ActionLink("Destination", "Index", "Destinations")</li>
+                    <li>@Html.ActionLink("Voyage", "Index", "Travels")</li>
+                    <li>@Html.ActionLink("Dossier de réservation", "Create", "BookingFiles")</li>
+                    <li>@Html.ActionLink("Assurances", "Index", "Insurances")</li>
+                    @*<li>@Html.ActionLink("Delete", "Delete", "TravelAgenciesController")</li>
+                        <li>@Html.ActionLink("Details", "Details", "TravelAgenciesController")</li>
+                        <li>@Html.ActionLink("Edit", "Edit", "TravelAgenciesController")</li>*@
+                </ul>
+                @if (manager == null)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a style="color:red">Statut : non connecté !</a></li>
+                        <li>@Html.ActionLink("Se Connecter","Login","Authentication")</li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a style="color:blue">Bonjour @manager.FirstName @manager.LastName</a></li>
+                        <li><a style="color:blue" href="@Url.Action("logout", "dashboard")"><i class="glyphicon glyphicon-log-out"></i></a></li>
+                    </ul>
+                }
             </div>
         </div>
     </div>
@@ -39,7 +63,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - BoVoyage by A²C</p>
         </footer>
     </div>
 
