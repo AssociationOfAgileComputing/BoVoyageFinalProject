@@ -31,14 +31,20 @@ namespace BoVoyageFinalProject.Models
         [Display(Name = "Nombre de participants")]
         public int TravellersNumber { get; set; }
 
-        public BookingFileState BookingFileState { get; set; }
+        
 
         [Display(Name = "Faites vous partie du voyage ?")]
         public bool IsCustomerTraveller { get; set; }
 
-        
+		[Required]
+		[Display(Name = "Etat du dossier")]
+		public string BookingFileState { get; set; }
 
-        public void GetTotalPrice()
+		
+
+
+
+		public void GetTotalPrice()
         {
             this.TotalPrice = ((Travel.Price * TravellersNumber));
         }
@@ -60,13 +66,7 @@ namespace BoVoyageFinalProject.Models
         public ICollection<Insurance> Insurances { get; set; }
     }
 
-    public enum BookingFileState
-    {
-        PENDING,
-        INPROGRESS,
-        DENIED,
-        GRANTED
-    }
+    
 
     public enum BookingFileCancellationReason
     {
