@@ -6,14 +6,15 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BoVoyageFinalProject.Controllers;
 using BoVoyageFinalProject.Data;
 using BoVoyageFinalProject.Models;
 
 namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 {
-    public class BookingFilesController : Controller
+    public class BookingFilesController : BaseController
     {
-        private BoVoyageDbContext db = new BoVoyageDbContext();
+        
 
         // GET: BackOffice/BookingFiles
         public ActionResult Index()
@@ -125,13 +126,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+       //[HttpGet]
+	   //[Authentification ]
     }
 }
