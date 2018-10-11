@@ -19,11 +19,13 @@ namespace BoVoyageFinalProject.Models
         [Required]
         [Display(Name = "Date retour")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]    
+        [DateTravelSuperieur("DateGo")]
         public DateTime DateBack { get; set; }
 
         [Required]
         [Display(Name = "Place(s) Disponible(s)")]
+        [Range(0,int.MaxValue,ErrorMessage = "Valeur invalide")]
         public int SpaceAvailable { get; set; }
 
         [Required]
