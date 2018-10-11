@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace BoVoyageFinalProject.Models
 {
@@ -21,10 +22,12 @@ namespace BoVoyageFinalProject.Models
         public string Area { get; set; }
 
         [StringLength(250)]
-        [Display(Name = "description")]
+        [Display(Name = "Description")]
+        [DataType(DataType.MultilineText)]
+        [AllowHtml]
         public string Description { get; set; }
 
-        public List<Travel> Travels { get; set; }
+        public ICollection<Travel> Travels { get; set; }
 
         [Display(Name = "Images")]
         public ICollection<DestinationPicture> Pictures { get; set; }
