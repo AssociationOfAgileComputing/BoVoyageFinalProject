@@ -15,8 +15,6 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 {
     public class DestinationsController : BaseController
     {
-        private BoVoyageDbContext db = new BoVoyageDbContext();
-
         // GET: BackOffice/Destinations
         public ActionResult Index()
         {

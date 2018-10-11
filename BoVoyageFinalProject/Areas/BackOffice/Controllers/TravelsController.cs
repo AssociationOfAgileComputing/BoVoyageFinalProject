@@ -12,105 +12,114 @@ using System.Web.Mvc;
 
 namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 {
-    public class TravelAgenciesController : BaseController
+    public class TravelsController : BaseController
     {
-        // GET: BackOffice/TravelAgencies
+        // GET: BackOffice/Travels
         public ActionResult Index()
         {
-            return View(db.TravelAgencys.ToList());
+            var travels = db.Travels.Include(t => t.Destination).Include(t => t.TravelAgency);
+            return View(travels.ToList());
         }
 
-        // GET: BackOffice/TravelAgencies/Details/5
+        // GET: BackOffice/Travels/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TravelAgency travelAgency = db.TravelAgencys.Find(id);
-            if (travelAgency == null)
+            Travel travel = db.Travels.Find(id);
+            if (travel == null)
             {
                 return HttpNotFound();
             }
-            return View(travelAgency);
+            return View(travel);
         }
 
-        // GET: BackOffice/TravelAgencies/Create
+        // GET: BackOffice/Travels/Create
         public ActionResult Create()
         {
+            ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent");
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencys, "ID", "Name");
             return View();
         }
 
-        // POST: BackOffice/TravelAgencies/Create
+        // POST: BackOffice/Travels/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name")] TravelAgency travelAgency)
+        public ActionResult Create([Bind(Include = "ID,DateGo,DateBack,SpaceAvailable,Price,TravelAgencyID,DestinationID")] Travel travel)
         {
             if (ModelState.IsValid)
             {
-                db.TravelAgencys.Add(travelAgency);
+                db.Travels.Add(travel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(travelAgency);
+            ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent", travel.DestinationID);
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencys, "ID", "Name", travel.TravelAgencyID);
+            return View(travel);
         }
 
-        // GET: BackOffice/TravelAgencies/Edit/5
+        // GET: BackOffice/Travels/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TravelAgency travelAgency = db.TravelAgencys.Find(id);
-            if (travelAgency == null)
+            Travel travel = db.Travels.Find(id);
+            if (travel == null)
             {
                 return HttpNotFound();
             }
-            return View(travelAgency);
+            ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent", travel.DestinationID);
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencys, "ID", "Name", travel.TravelAgencyID);
+            return View(travel);
         }
 
-        // POST: BackOffice/TravelAgencies/Edit/5
+        // POST: BackOffice/Travels/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] TravelAgency travelAgency)
+        public ActionResult Edit([Bind(Include = "ID,DateGo,DateBack,SpaceAvailable,Price,TravelAgencyID,DestinationID")] Travel travel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(travelAgency).State = EntityState.Modified;
+                db.Entry(travel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(travelAgency);
+            ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent", travel.DestinationID);
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencys, "ID", "Name", travel.TravelAgencyID);
+            return View(travel);
         }
 
-        // GET: BackOffice/TravelAgencies/Delete/5
+        // GET: BackOffice/Travels/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TravelAgency travelAgency = db.TravelAgencys.Find(id);
-            if (travelAgency == null)
+            Travel travel = db.Travels.Find(id);
+            if (travel == null)
             {
                 return HttpNotFound();
             }
-            return View(travelAgency);
+            return View(travel);
         }
 
-        // POST: BackOffice/TravelAgencies/Delete/5
+        // POST: BackOffice/Travels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TravelAgency travelAgency = db.TravelAgencys.Find(id);
-            db.TravelAgencys.Remove(travelAgency);
+            Travel travel = db.Travels.Find(id);
+            db.Travels.Remove(travel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
