@@ -20,13 +20,10 @@ namespace BoVoyageFinalProject.Models
         [ForeignKey("TravelId")]
         public Travel Travel { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Le champ {0} est obligatoire.")]
         [Display(Name = "Numéro de carte de crédit")]
+		[Range(16,19,ErrorMessage ="Numéro de carte invalide")]
         public string CreditCardNumber { get; set; }
-
-        [Required]
-        [Display(Name = "Prix par personne")]
-        public decimal PricePerPerson { get; set; }
 
         [Display(Name = "Prix total")]
         public decimal TotalPrice { get; set; }
@@ -43,7 +40,7 @@ namespace BoVoyageFinalProject.Models
 
         public void GetTotalPrice()
         {
-            this.TotalPrice = ((this.PricePerPerson * TravellersNumber));
+            this.TotalPrice = ((Travel.Price * TravellersNumber));
         }
 
         public void CheckSolvency()
