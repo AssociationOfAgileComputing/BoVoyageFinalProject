@@ -11,7 +11,7 @@ using BoVoyageFinalProject.Models;
 
 namespace BoVoyageFinalProject.Controllers
 {
-    public class CustomersController : Controller
+    public class CustomersController : BaseController
     {
         private BoVoyageDbContext db = new BoVoyageDbContext();
 
@@ -116,13 +116,5 @@ namespace BoVoyageFinalProject.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

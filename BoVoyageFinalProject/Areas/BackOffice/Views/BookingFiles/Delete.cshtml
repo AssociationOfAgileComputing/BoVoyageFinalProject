@@ -1,0 +1,88 @@
+﻿@model BoVoyageFinalProject.Models.BookingFile
+
+@{
+  
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>BookingFile</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.PhoneNumber)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Customer.PhoneNumber)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Travel.ID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Travel.ID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CreditCardNumber)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CreditCardNumber)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TotalPrice)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TravellersNumber)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TravellersNumber)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.BookingFileState)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.BookingFileState)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.IsCustomerTraveller)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.IsCustomerTraveller)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

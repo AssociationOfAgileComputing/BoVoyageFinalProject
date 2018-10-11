@@ -31,8 +31,6 @@ namespace BoVoyageFinalProject.Models
         [Display(Name = "Nombre de participants")]
         public int TravellersNumber { get; set; }
 
-        
-
         [Display(Name = "Faites vous partie du voyage ?")]
         public bool IsCustomerTraveller { get; set; }
 
@@ -40,8 +38,9 @@ namespace BoVoyageFinalProject.Models
 		[Display(Name = "Etat du dossier")]
 		public string BookingFileState { get; set; }
 
-		
-
+		[Required]
+		[Display(Name = "Raison de l'annulation")]
+		public string BookingFileCancellationReason { get; set; }
 
 
 		public void GetTotalPrice()
@@ -57,7 +56,7 @@ namespace BoVoyageFinalProject.Models
         {
         }
 
-        public void BookingCancellation(BookingFileCancellationReason reason)
+        public void BookingCancellation(string reason)
         {
         }
 
@@ -68,9 +67,5 @@ namespace BoVoyageFinalProject.Models
 
     
 
-    public enum BookingFileCancellationReason
-    {
-        CUSTOMER,
-        UNAVAILABLEPLACES
-    }
+   
 }
