@@ -181,6 +181,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\Message.cs" />
+    <Compile Include="Validators\DateTravelSuperieur.cs" />
     <Compile Include="Validators\Price.cs" />
   </ItemGroup>
   <ItemGroup>
