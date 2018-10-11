@@ -15,7 +15,7 @@ namespace BoVoyageFinalProject.Filters
         {
             if (Type == "BO")
             {
-                if (filterContext.HttpContext.Session["ADMINISTRATOR"] == null)
+                if (filterContext.HttpContext.Session["SALESMANAGER"] == null)
                 {
                     filterContext.Result = new RedirectResult(@"\BackOffice\authentication\Login");
                 }
@@ -25,7 +25,7 @@ namespace BoVoyageFinalProject.Filters
             {
                 if (filterContext.HttpContext.Session["CUSTOMER"] == null)
                 {
-                    filterContext.Result = new RedirectResult(@"\customers\login");
+                    filterContext.Result = new RedirectResult(@"\customers\Login");
                 }
             }
         }
