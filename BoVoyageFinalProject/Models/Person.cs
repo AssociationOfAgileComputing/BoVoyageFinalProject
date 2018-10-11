@@ -24,5 +24,13 @@ namespace BoVoyageFinalProject.Models
         [RegularExpression(@"^[A-Z][a-z\D\-\'][^$@#^%§!\p{P}\*""]+$")]
         public string LastName { get; set; }
 
+        public string Fullname
+        {
+            get
+            {
+                return string.Format("{0} {1}", LastName, FirstName);
+            }
+        }
+
     }
 }
