@@ -15,7 +15,7 @@ namespace BoVoyageFinalProject.Models
         [StringLength(150, ErrorMessage = "Le champ {0} doit contenir {1} caractères maximum.")]
         [Display(Name = "Adresse E-mail")]
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" + @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" + @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Le format n'est pas bon.")]
-        public string Email { get; set; }
+        public string Mail { get; set; }
 
         [Required(ErrorMessage = "Le champ {0} est obligatoire.")]
         [Display(Name = "Mot de Passe")]
