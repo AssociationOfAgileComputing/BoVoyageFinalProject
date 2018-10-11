@@ -17,7 +17,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice
             context.MapRoute(
                 "BackOffice_default",
                 "BackOffice/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { controller = "dashboard", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
