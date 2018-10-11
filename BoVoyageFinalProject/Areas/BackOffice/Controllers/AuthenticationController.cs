@@ -29,7 +29,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
                 }
                 else
                 {
-                    Session["MANAGER"] = manager;
+                    Session["SALESMANAGER"] = manager;
                     return RedirectToAction("Index", "Dashboard", new { area = "BackOffice" });
                 }
             }
@@ -38,7 +38,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 
         public ActionResult Logout()
         {
-            Session.Remove("MANAGER");
+            Session.Remove("SALESMANAGER");
             return RedirectToAction("Index", "Home", new { area = "" });
         }
     }
