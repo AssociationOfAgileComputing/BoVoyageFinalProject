@@ -8,13 +8,15 @@ using System.Web;
 using System.Web.Mvc;
 using BoVoyageFinalProject.Controllers;
 using BoVoyageFinalProject.Data;
+using BoVoyageFinalProject.Filters;
 using BoVoyageFinalProject.Models;
 
 namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 {
+	[Authentication]
     public class BookingFilesController : BaseController
     {
-        private BoVoyageDbContext db = new BoVoyageDbContext();
+        
 
         // GET: BackOffice/BookingFiles
         public ActionResult Index()
@@ -30,7 +32,8 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BookingFile bookingFile = db.BookingFiles.Find(id);
+			//BookingFile bookingFile = db.BookingFiles.Find(id);
+			BookingFile bookingFile = db.BookingFiles.Include("Customer").SingleOrDefault(x => x.ID == id);
             if (bookingFile == null)
             {
                 return HttpNotFound();
@@ -51,7 +54,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,CustomerId,TravelId,CreditCardNumber,TotalPrice,TravellersNumber,IsCustomerTraveller,BookingFileState,BookingFileCancellationReason")] BookingFile bookingFile)
+        public ActionResult Create([Bind(Include = "CustomerId,TravelId,CreditCardNumber,TotalPrice,TravellersNumber,IsCustomerTraveller,BookingFileState,BookingFileCancellationReason")] BookingFile bookingFile)
         {
             if (ModelState.IsValid)
             {
@@ -120,19 +123,20 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BookingFile bookingFile = db.BookingFiles.Find(id);
+			//BookingFile bookingFile = db.BookingFiles.Find(id);
+			BookingFile bookingFile = db.BookingFiles.Include("Customer").SingleOrDefault(x => x.ID == id);
+			var customers = db.Customers.Where(x => x.ID== id);
+
+			foreach (var item in customers)
+			{
+				db.Entry(item).State = EntityState.Deleted;
+			}
+
             db.BookingFiles.Remove(bookingFile);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+       
     }
 }

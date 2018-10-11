@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BoVoyageFinalProject.Models;
+using System.Data.Entity;
 
 namespace BoVoyageFinalProject.Controllers
 {
@@ -10,7 +12,8 @@ namespace BoVoyageFinalProject.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var travels = db.Travels.Include(t => t.Destination).Include(t => t.Destination.Pictures).Include("TravelAgency").ToList();
+            return View(travels);
         }
 
         public ActionResult About()
