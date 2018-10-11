@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BoVoyageFinalProject.Areas.BackOffice.Models
 {
-    public class AuthenticationViewModels
+    public class AuthenticationLoginViewModels
     {
         [Display(Name ="E-mail")]
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
