@@ -8,10 +8,12 @@ using System.Web;
 using System.Web.Mvc;
 using BoVoyageFinalProject.Controllers;
 using BoVoyageFinalProject.Data;
+using BoVoyageFinalProject.Filters;
 using BoVoyageFinalProject.Models;
 
 namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 {
+	[Authentication]
     public class InsurancesController : BaseController
     {
 
