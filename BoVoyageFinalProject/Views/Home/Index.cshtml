@@ -1,11 +1,33 @@
-﻿@{
+﻿@model IEnumerable<BoVoyageFinalProject.Models.Travel>
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="panel-body">
+    <h2>Voyages:</h2>
+    @foreach (var item in Model)
+    {
+    <div class="panel col-sm-3">
+        @if (item.Destination.Pictures != null)
+        {
+            if (item.Destination.Pictures.Count > 0)
+            {
+                <img src="data:@item.Destination.Pictures.First().ContentType;base64,@Convert.ToBase64String(item.Destination.Pictures.First().Content)" class="img-thumbnail" />
+            }
+        }
+
+        <br />
+        @Html.DisplayNameFor(model => model.Destination) : @Html.DisplayFor(modelItem => item.Destination.Country)
+        <br />
+        @Html.DisplayNameFor(model => model.DateGo) : @Html.DisplayFor(modelItem => item.DateGo)
+        <br />
+        @Html.DisplayNameFor(model => model.DateBack) : @Html.DisplayFor(modelItem => item.DateBack)
+        <br />
+
+        <a href="#" class="btn btn-info"> <i class="glyphicon glyphicon-info-sign"> Details</i> </a>
+        <a href="#" class="btn btn-info"> <i class="glyphicon glyphicon-apple"> S'incrire</i> </a>
+    </div>
+    }
 </div>
 
 <div class="row">
