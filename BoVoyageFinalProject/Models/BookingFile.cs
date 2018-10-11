@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BoVoyageFinalProject.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -22,7 +23,7 @@ namespace BoVoyageFinalProject.Models
 
         [Required(ErrorMessage = "Le champ {0} est obligatoire.")]
         [Display(Name = "Numéro de carte de crédit")]
-		[Range(16,19,ErrorMessage ="Numéro de carte invalide")]
+		[CreditCardCustomAttribute]
         public string CreditCardNumber { get; set; }
 
         [Display(Name = "Prix total")]
@@ -38,7 +39,7 @@ namespace BoVoyageFinalProject.Models
 		[Display(Name = "Etat du dossier")]
 		public string BookingFileState { get; set; }
 
-		[Required]
+		
 		[Display(Name = "Raison de l'annulation")]
 		public string BookingFileCancellationReason { get; set; }
 
