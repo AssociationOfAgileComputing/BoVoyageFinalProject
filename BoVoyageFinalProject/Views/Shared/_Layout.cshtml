@@ -1,11 +1,11 @@
 ﻿@{ 
-    var customer = Session["Customer"] as BoVoyageFinalProject.Models.Customer;
+    var customer = Session["CUSTOMER"] as BoVoyageFinalProject.Models.Customer;
 }
 
 @{ 
     Layout = null;
 }
-
+s
 
 
 
@@ -19,54 +19,56 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("BoVoyage", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @if (customer == null)
-                {
-                    <form class="navbar-form navbar-left" method="post" action="@Url.Action("login", "customers")">
-                                <div class="form-group">
-                                    <input type = "text" name="mail" class="form-control" placeholder="Email">
-                                    <input type = "password" name="password" class="form-control" placeholder="Mot de passe" />
-                                </div>
-                                <button type = "submit" class="btn btn-info">Se Connecter</button>
-                            </form>
-                            <ul class="nav navbar-nav navbar-left">
-                                <li><a href = "@Url.Action("create", "customers")">Inscription</a></li>
-                            </ul>
-                        }
-                        else
-                        {
-            <ul class="nav navbar-nav navbar-right">
-                <li><a style="color:blue">Bonjour @customer.FirstName @customer.LastName</a></li>
-                <li><a style="color:blue" href="@Url.Action("logout", "customers")"><i class="glyphicon glyphicon-log-out"></i></a></li>
-            </ul>
-                                }
+    <div class="container">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("BoVoyage", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    @if (customer == null)
+                    {
+                        <form class="navbar-form navbar-left" method="post" action="@Url.Action("login", "customers")">
+                            <div class="form-group">
+                                <input type="text" name="mail" class="form-control" placeholder="Email">
+                                <input type="password" name="password" class="form-control" placeholder="Mot de passe" />
+                            </div>
+                            <button type="submit" class="btn btn-info">Se Connecter</button>
+                        </form>
+                        <ul class="nav navbar-nav navbar-left">
+                            <li><a href="@Url.Action("create", "customers")">Inscription</a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a style="color:blue">Bonjour @customer.FirstName @customer.LastName</a></li>
+                            <li><a style="color:blue" href="@Url.Action("logout", "customers")"><i class="glyphicon glyphicon-log-out"></i></a></li>
+                        </ul>
+                    }
 
-                }
+                    }
+                </div>
             </div>
         </div>
-    </div>
-    @Html.Partial("_PartialDisplay")
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - BoVoyage</p>
-        </footer>
+        @Html.Partial("_PartialDisplay")
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - BoVoyage</p>
+            </footer>
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
