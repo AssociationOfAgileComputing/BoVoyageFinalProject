@@ -7,16 +7,16 @@ using System.Web;
 
 namespace BoVoyageFinalProject.Models
 {
-	public class Insurance:BaseModel
+	public class Insurance : BaseModel
 	{
 		public decimal InsuranceCost { get; set; }
-        [EnumDataType(typeof(InsuranceType))]
-        public InsuranceType InsuranceType { get; set; }
-    }
 
-    public enum InsuranceType
-    {
-        [EnumMember(Value = "Annulation")]
-        CANCELLATION
-    }
+		[Required]
+		[Display(Name = "Type d'assurance")]
+		public string InsuranceType { get; set; }
+
+		public ICollection<BookingFile> BookingFiles { get; set; }
+	}
+
+
 }
