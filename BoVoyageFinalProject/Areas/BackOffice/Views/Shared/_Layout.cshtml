@@ -19,15 +19,16 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Agence", "Index", "TravelAgencies")</li>
-                    <li>@Html.ActionLink("Destination", "Index", "Destinations")</li>
-                    <li>@Html.ActionLink("Voyage", "Index", "Travels")</li>
-                    <li>@Html.ActionLink("Dossier de réservation", "Registration", "BookingFiles")</li>
-                    @*<li>@Html.ActionLink("Delete", "Delete", "TravelAgenciesController")</li>
-                        <li>@Html.ActionLink("Details", "Details", "TravelAgenciesController")</li>
-                        <li>@Html.ActionLink("Edit", "Edit", "TravelAgenciesController")</li>*@
-                </ul>
+				<ul class="nav navbar-nav">
+					<li>@Html.ActionLink("Agence", "Index", "TravelAgencies")</li>
+					<li>@Html.ActionLink("Destination", "Index", "Destinations")</li>
+					<li>@Html.ActionLink("Voyage", "Index", "Travels")</li>
+					<li>@Html.ActionLink("Dossier de réservation", "Create", "BookingFiles")</li>
+					li>@Html.ActionLink("Assurances", "Index", "Insurances")</li>
+					@*<li>@Html.ActionLink("Delete", "Delete", "TravelAgenciesController")</li>
+		<li>@Html.ActionLink("Details", "Details", "TravelAgenciesController")</li>
+		<li>@Html.ActionLink("Edit", "Edit", "TravelAgenciesController")</li>*@
+				</ul>
             </div>
         </div>
     </div>
