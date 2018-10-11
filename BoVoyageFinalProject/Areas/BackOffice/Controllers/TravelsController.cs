@@ -28,7 +28,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Travel travel = db.Travels.Find(id);
+            Travel travel = db.Travels.Include("TravelAgency").Include("Destination").SingleOrDefault(x => x.ID == id);
             if (travel == null)
             {
                 return HttpNotFound();
