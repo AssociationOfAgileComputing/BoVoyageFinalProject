@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BoVoyageFinalProject.Controllers;
+using BoVoyageFinalProject.Data;
+using BoVoyageFinalProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,12 +9,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BoVoyageFinalProject.Data;
-using BoVoyageFinalProject.Models;
 
 namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 {
-    public class TravelAgenciesController : Controller
+    public class TravelAgenciesController : BaseController
     {
         private BoVoyageDbContext db = new BoVoyageDbContext();
 
@@ -43,7 +44,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         }
 
         // POST: BackOffice/TravelAgencies/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -75,7 +76,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         }
 
         // POST: BackOffice/TravelAgencies/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
