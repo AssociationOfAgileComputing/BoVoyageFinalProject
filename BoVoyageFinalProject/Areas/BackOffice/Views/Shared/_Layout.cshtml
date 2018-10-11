@@ -46,14 +46,14 @@
                 {
                     <ul class="nav navbar-nav navbar-right">
                         <li><a style="color:red">Statut : non connecté !</a></li>
-                        <li>@Html.ActionLink("Se Connecter","Login","Authentication")</li>
+                        <li>@Html.ActionLink("Se Connecter", "Login", "Authentication")</li>
                     </ul>
                 }
                 else
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a style="color:blue">Bonjour @manager.FirstName @manager.LastName</a></li>
-                        <li><a style="color:blue" href="@Url.Action("logout", "dashboard")"><i class="glyphicon glyphicon-log-out"></i></a></li>
+                        <li><a style="color:white">Bonjour @manager.FirstName @manager.LastName</a></li>
+                        <li><a id="logout" style="color:white" href="@Url.Action("Logout", "Authentication")"><i class="glyphicon glyphicon-log-out"></i></a></li>
                     </ul>
                 }
             </div>
@@ -70,5 +70,14 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        $(function () {
+            $("#logout").click(function () {
+                if (confirm("Voulez-vous vous déconnecter?") == false) {
+                    return false;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
