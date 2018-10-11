@@ -1,4 +1,5 @@
-﻿using BoVoyageFinalProject.Data;
+﻿using BoVoyageFinalProject.Controllers;
+using BoVoyageFinalProject.Data;
 using BoVoyageFinalProject.Models;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Web.Mvc;
 
 namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 {
-    public class DestinationsController : Controller
+    public class DestinationsController : BaseController
     {
         private BoVoyageDbContext db = new BoVoyageDbContext();
 
