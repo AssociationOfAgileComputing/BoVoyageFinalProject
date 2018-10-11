@@ -39,7 +39,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         public ActionResult Logout()
         {
             Session.Remove("SALESMANAGER");
-            return RedirectToAction("Index", "Dashboard", new { area = "" });
+            return RedirectToAction("Index", "Dashboard", new { area = "BackOffice" });
         }
     }
 }
