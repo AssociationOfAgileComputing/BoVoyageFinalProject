@@ -158,6 +158,7 @@
     <Compile Include="Areas\BackOffice\Controllers\DestinationsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DashboardController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\TravelAgenciesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\TravelsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\BoVoyageDbContext.cs" />
@@ -222,6 +223,11 @@
     <Content Include="Areas\BackOffice\Views\Destinations\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\BookingFiles\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Travels\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Travels\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Travels\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Travels\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Travels\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

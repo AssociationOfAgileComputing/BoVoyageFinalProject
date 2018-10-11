@@ -1,0 +1,80 @@
+﻿@model BoVoyageFinalProject.Models.Travel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Travel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Destination.Continent)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Destination.Continent)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TravelAgency.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TravelAgency.Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DateGo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DateGo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DateBack)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DateBack)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SpaceAvailable)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SpaceAvailable)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>
