@@ -26,7 +26,7 @@ namespace BoVoyageFinalProject.Models
         public int SpaceAvailable { get; set; }
 
         [Display(Name = "Prix")]
-        public decimal? Price { get; set; }
+        public decimal Price { get; set; }
 
         public ICollection<BookingFile> BookingFiles { get; set; }
 
