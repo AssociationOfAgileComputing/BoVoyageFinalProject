@@ -167,6 +167,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Data\BoVoyageDbContext.cs" />
     <Compile Include="Filters\AuthenticationAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -570,6 +571,7 @@
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\BookingFiles\" />
+    <Folder Include="Views\Reservation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

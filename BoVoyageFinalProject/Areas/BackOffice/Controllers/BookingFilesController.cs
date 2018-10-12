@@ -60,10 +60,11 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
             {
                 db.BookingFiles.Add(bookingFile);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["BookingFileId"] = bookingFile.ID;
+                return RedirectToAction("Ajout","Travellers");
             }
 
-            ViewBag.CustomerId = new SelectList(db.Customers, "ID", "PhoneNumber", bookingFile.CustomerId);
+            ViewBag.CustomerId = new SelectList(db.Customers, "ID", "Email", bookingFile.CustomerId);
             ViewBag.TravelId = new SelectList(db.Travels, "ID", "ID", bookingFile.TravelId);
             return View(bookingFile);
         }
@@ -80,7 +81,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "ID", "PhoneNumber", bookingFile.CustomerId);
+            ViewBag.CustomerId = new SelectList(db.Customers, "ID", "Email", bookingFile.CustomerId);
             ViewBag.TravelId = new SelectList(db.Travels, "ID", "ID", bookingFile.TravelId);
             return View(bookingFile);
         }
@@ -98,7 +99,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "ID", "PhoneNumber", bookingFile.CustomerId);
+            ViewBag.CustomerId = new SelectList(db.Customers, "ID", "Email", bookingFile.CustomerId);
             ViewBag.TravelId = new SelectList(db.Travels, "ID", "ID", bookingFile.TravelId);
             return View(bookingFile);
         }
@@ -123,15 +124,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-			//BookingFile bookingFile = db.BookingFiles.Find(id);
-			BookingFile bookingFile = db.BookingFiles.Include("Customer").SingleOrDefault(x => x.ID == id);
-			var customers = db.Customers.Where(x => x.ID== id);
-
-			foreach (var item in customers)
-			{
-				db.Entry(item).State = EntityState.Deleted;
-			}
-
+			BookingFile bookingFile = db.BookingFiles.Find(id);
             db.BookingFiles.Remove(bookingFile);
             db.SaveChanges();
             return RedirectToAction("Index");

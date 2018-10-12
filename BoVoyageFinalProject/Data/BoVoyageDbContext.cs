@@ -32,5 +32,6 @@ namespace BoVoyageFinalProject.Data
         public DbSet<SalesManager> SalesManagers { get; set; }
 
         public DbSet<Traveller> Travellers { get; set; }
+        public object Travel { get; internal set; }
     }
 }
