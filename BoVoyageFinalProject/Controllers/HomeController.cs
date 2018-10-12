@@ -52,7 +52,7 @@ namespace BoVoyageFinalProject.Controllers
             return View(travels);
         }
         
-        public ActionResult Recherche(string pays)
+        public ActionResult Search(string pays)
         {
             var travels = db.Travels.Include(t => t.Destination)
                 .Include(t => t.Destination.Pictures)
@@ -67,5 +67,36 @@ namespace BoVoyageFinalProject.Controllers
             }
             return View(travels);
         }
+        public ActionResult SearchPrice(decimal? prixMin, decimal? prixMax)
+        {
+            var travels = db.Travels.Include(t => t.Destination)
+                .Include(t => t.Destination.Pictures)
+                .Include("TravelAgency").Where(x => x.Price >= prixMin && x.Price <= prixMax).ToList();
+            if (travels == null)
+            {
+                return HttpNotFound();
+            }
+            if (travels.Count == 0)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(travels);
+        }
+        public ActionResult SearchDate(DateTime? dateAller, DateTime? dateRetour)
+        {
+            var travels = db.Travels.Include(t => t.Destination)
+                .Include(t => t.Destination.Pictures)
+                .Include("TravelAgency").Where(x => x.DateGo >= dateAller && x.DateBack <= dateRetour).ToList();
+            if (travels == null)
+            {
+                return HttpNotFound();
+            }
+            if (travels.Count == 0)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(travels);
+        }
+
     }
 }
