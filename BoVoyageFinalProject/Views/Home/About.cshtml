@@ -1,8 +1,21 @@
-﻿@{
+﻿@model BoVoyageFinalProject.Models.Info
+@{
     ViewBag.Title = "Qui sommes nous ?";
 }
-<h2>@ViewBag.Title</h2>
-<h3>BoVoyage, les vacances qui ne cassent pas le porte monnaie !</h3>
+<h3>@ViewBag.Message</h3>
+
+<h4>BoVoyage, les vacances qui ne cassent pas le porte monnaie !</h4>
 
 <p>Spécialiste des voyages discounts depuis plus de 50 ans, BoVoyage est désormais accessible depuis votre nid douillet</p>
 <p>Envie d'ailleurs ? N'attendez plus et réservez en ligne dès maintenant !!!</p>
+<div>
+    <div>
+        <hr id="separation"/>
+        <p>Application développée par : <span style="font-weight:bold">@Model.DevName</span></p>
+        <p>Adresse postale : @Model.Address</p>
+        <p>Contact:@Model.ContactMail</p>
+        <p>&copy;@Model.CreatedDate</p>
+    </div>
+</div>
+
+
