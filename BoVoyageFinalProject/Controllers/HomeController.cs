@@ -18,14 +18,21 @@ namespace BoVoyageFinalProject.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Bienvenue sur l'application BoVoyage";
+            var modelInfo = new Info
+            {
+                DevName = "Association of Agile Computing",
+                Address = "rue de la bonne Entente - Paris",
+                ContactMail = "a2c@gmail.com",
+                CreatedDate = "Octobre 2008"
+            };
 
-            return View();
+            return View(modelInfo);
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Contacter le service commercial";
 
             return View();
         }
