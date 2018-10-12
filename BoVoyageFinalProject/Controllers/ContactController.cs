@@ -28,17 +28,17 @@ namespace BoVoyageFinalProject.Controllers
                     MailMessage mail = new MailMessage();
                     mail.From = new MailAddress(contactViewModel.Email);//Email which you are getting 
                                                                         //from contact us page 
-                    mail.To.Add("contactBoVoyage@gmail.com");//Where mail will be sent 
+                    mail.To.Add("mail@mail.com");//Where mail will be sent 
                     mail.Subject = contactViewModel.Subject;
                     mail.Body = contactViewModel.Message;
                     SmtpClient smtp = new SmtpClient();
 
-                    smtp.Host = "smtp.gmail.com";
+                    smtp.Host = "smtp.mail.com";
 
                     smtp.Port = 587;
 
                     smtp.Credentials = new System.Net.NetworkCredential
-                    ("contactBoVoyage@gmail.com", "AnnCriAle");
+                    ("mail@mail.com", "Password");
 
                     smtp.EnableSsl = true;
 
