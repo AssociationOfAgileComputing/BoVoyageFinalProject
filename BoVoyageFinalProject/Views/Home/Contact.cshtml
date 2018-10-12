@@ -3,7 +3,7 @@
 
 @{
 	ViewBag.Title = "Nous contacter";
-	var sendEmail = false;
+	
 }
 
 
@@ -41,7 +41,9 @@
 		@Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
 	</div>
 
-	<button onclick="Display("Merci de nous avoir contactés nous vous répondrons dans les meilleurs délais")" type="submit" class="btn btn-primary">Envoyer</button>
+
+	
+	<a class="btn btn-primary" href="@Url.Action("SendMail","Home")" role="button" >Envoyer</a>
 }
 
 

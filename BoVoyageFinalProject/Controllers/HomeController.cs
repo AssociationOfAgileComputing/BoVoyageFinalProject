@@ -38,6 +38,13 @@ namespace BoVoyageFinalProject.Controllers
 
             return View();
         }
+
+		public ActionResult SendMail()
+		{
+			Display("Merci de nous avoir contactés nous vous recontacterons dans les meilleurs délais");
+			return RedirectToAction("Contact");
+		}
+
         [Route("DetailVoyageRoute")]
         public ActionResult Details(int? id)
         {
