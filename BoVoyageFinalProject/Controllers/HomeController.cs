@@ -60,11 +60,11 @@ namespace BoVoyageFinalProject.Controllers
             return View(travels);
         }
         
-        public ActionResult Search(string pays)
+        public ActionResult Search(string country)
         {
             var travels = db.Travels.Include(t => t.Destination)
                 .Include(t => t.Destination.Pictures)
-                .Include("TravelAgency").Where(x=>x.Destination.Country == pays).ToList();
+                .Include("TravelAgency").Where(x=>x.Destination.Country == country).ToList();
             if (travels == null)
             {
                 return HttpNotFound();

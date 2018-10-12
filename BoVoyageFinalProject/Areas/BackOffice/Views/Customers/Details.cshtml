@@ -98,11 +98,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model =>model.BookingFiles)
+            @Html.DisplayNameFor(model => model.BookingFiles)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BookingFiles)
+            @foreach (var item in Model.BookingFiles)
+            {
+                @Html.DisplayFor(model => item.ID)
+                <span>, </span>
+            }
         </dd>
 
 
