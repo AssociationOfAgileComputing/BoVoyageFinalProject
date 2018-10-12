@@ -6,34 +6,35 @@ using System.Web.Mvc;
 using BoVoyageFinalProject.Models;
 using System.Data.Entity;
 using System.Net;
+using BoVoyageFinalProject.Tools;
 
 namespace BoVoyageFinalProject.Controllers
 {
-    public class HomeController : BaseController
-    {
-        public ActionResult Index()
-        {
-            var travels = db.Travels.Include(t => t.Destination).Include(t => t.Destination.Pictures).Include("TravelAgency").ToList();
-            return View(travels);
-        }
+	public class HomeController : BaseController
+	{
+		public ActionResult Index()
+		{
+			var travels = db.Travels.Include(t => t.Destination).Include(t => t.Destination.Pictures).Include("TravelAgency").ToList();
+			return View(travels);
+		}
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Bienvenue sur l'application BoVoyage";
-            var modelInfo = new Info
-            {
-                DevName = "Association of Agile Computing",
-                Address = "rue de la bonne Entente - Paris",
-                ContactMail = "a2c@gmail.com",
-                CreatedDate = "Octobre 2008"
-            };
+		public ActionResult About()
+		{
+			ViewBag.Message = "Bienvenue sur l'application BoVoyage";
+			var modelInfo = new Info
+			{
+				DevName = "Association of Agile Computing",
+				Address = "rue de la bonne Entente - Paris",
+				ContactMail = "a2c@gmail.com",
+				CreatedDate = "Octobre 2008"
+			};
 
-            return View(modelInfo);
-        }
+			return View(modelInfo);
+		}
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Contacter le service commercial";
+		public ActionResult Contact()
+		{
+			ViewBag.Message = "Contacter le service commercial";
 
             return View();
         }
@@ -63,6 +64,7 @@ namespace BoVoyageFinalProject.Controllers
             }
             if (travels.Count==0)
             {
+                Display("Malheureusement, nous n'avons pas de voyages à cette destination");
                 return RedirectToAction("Index");
             }
             return View(travels);
@@ -78,6 +80,7 @@ namespace BoVoyageFinalProject.Controllers
             }
             if (travels.Count == 0)
             {
+                Display("Malheureusement, nous n'avons pas voyagé à ces dates");
                 return RedirectToAction("Index");
             }
             return View(travels);
@@ -93,6 +96,7 @@ namespace BoVoyageFinalProject.Controllers
             }
             if (travels.Count == 0)
             {
+                Display("Malheureusement, nous n'avons pas voyagé sur ces valeurs");
                 return RedirectToAction("Index");
             }
             return View(travels);

@@ -2,6 +2,7 @@
 using BoVoyageFinalProject.Data;
 using BoVoyageFinalProject.Filters;
 using BoVoyageFinalProject.Models;
+using BoVoyageFinalProject.Tools;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -57,11 +58,13 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
             {
                 db.Travels.Add(travel);
                 db.SaveChanges();
+                Display("Le voyage a été créé avec succès.");
                 return RedirectToAction("Index");
             }
 
             ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Area", travel.DestinationID);
             ViewBag.TravelAgencyID = new SelectList(db.TravelAgencys, "ID", "Name", travel.TravelAgencyID);
+            Display("Veuillez corriger les erreurs", MessageType.ERROR);
             return View(travel);
         }
 
