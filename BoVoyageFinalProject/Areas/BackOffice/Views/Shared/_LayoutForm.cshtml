@@ -1,0 +1,16 @@
+﻿
+@{
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h2>@RenderSection("SectionTitle", true)</h2>
+</div>
+
+@RenderBody()
+
+@section scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @RenderSection("scripts", false)
+}
