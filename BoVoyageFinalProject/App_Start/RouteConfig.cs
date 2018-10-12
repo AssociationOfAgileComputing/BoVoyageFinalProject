@@ -28,10 +28,20 @@ namespace BoVoyageFinalProject
                 defaults: new { controller = "Home", action = "Contact" }
                 );
 
+            //routes.MapRoute(
+            //    name: "CustomerRoute",
+            //    url: " Client",
+            //    defaults: new { }
+            //    );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[]
+                {
+                    "BoVoyageFinalProject.Controllers"
+                }
             );
         }
     }
