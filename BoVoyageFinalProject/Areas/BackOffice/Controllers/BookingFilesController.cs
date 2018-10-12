@@ -13,7 +13,7 @@ using BoVoyageFinalProject.Models;
 
 namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 {
-	//[Authentication]
+	[Authentication]
     public class BookingFilesController : BaseController
     {
         
@@ -44,7 +44,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         // GET: BackOffice/BookingFiles/Create
         public ActionResult Create()
         {
-            ViewBag.CustomerId = new SelectList(db.Customers, "ID", "Email");
+            ViewBag.CustomerId = new SelectList(db.Customers, "ID", "PhoneNumber");
             ViewBag.TravelId = new SelectList(db.Travels, "ID", "ID");
             return View();
         }
@@ -61,16 +61,17 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
                 db.BookingFiles.Add(bookingFile);
                 db.SaveChanges();
                 TempData["BookingFileId"] = bookingFile.ID;
-                return RedirectToAction("Ajout","Travellers");
+                return RedirectToAction("Index");
             }
 
-            ViewBag.CustomerId = new SelectList(db.Customers, "ID", "Email", bookingFile.CustomerId);
+            ViewBag.CustomerId = new SelectList(db.Customers, "ID", "PhoneNumber", bookingFile.CustomerId);
             ViewBag.TravelId = new SelectList(db.Travels, "ID", "ID", bookingFile.TravelId);
             return View(bookingFile);
         }
 
-        // GET: BackOffice/BookingFiles/Edit/5
-        public ActionResult Edit(int? id)
+		// GET: BackOffice/BookingFiles/Edit/5
+	
+		public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -81,7 +82,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "ID", "Email", bookingFile.CustomerId);
+            ViewBag.CustomerId = new SelectList(db.Customers, "ID", "PhoneNumber", bookingFile.CustomerId);
             ViewBag.TravelId = new SelectList(db.Travels, "ID", "ID", bookingFile.TravelId);
             return View(bookingFile);
         }
@@ -99,13 +100,15 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "ID", "Email", bookingFile.CustomerId);
+            ViewBag.CustomerId = new SelectList(db.Customers, "ID", "PhoneNumber", bookingFile.CustomerId);
             ViewBag.TravelId = new SelectList(db.Travels, "ID", "ID", bookingFile.TravelId);
             return View(bookingFile);
         }
 
-        // GET: BackOffice/BookingFiles/Delete/5
-        public ActionResult Delete(int? id)
+		// GET: BackOffice/BookingFiles/Delete/5
+		
+		[ValidateAntiForgeryToken]
+		public ActionResult Delete(int? id)
         {
             if (id == null)
             {

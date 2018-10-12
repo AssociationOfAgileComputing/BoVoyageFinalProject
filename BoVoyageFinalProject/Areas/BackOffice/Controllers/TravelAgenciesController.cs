@@ -1,5 +1,6 @@
 ﻿using BoVoyageFinalProject.Controllers;
 using BoVoyageFinalProject.Data;
+using BoVoyageFinalProject.Filters;
 using BoVoyageFinalProject.Models;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ using System.Web.Mvc;
 
 namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 {
-    public class TravelAgenciesController : BaseController
+	[Authentication]
+	public class TravelAgenciesController : BaseController
     {
         // GET: BackOffice/TravelAgencies
         public ActionResult Index()
