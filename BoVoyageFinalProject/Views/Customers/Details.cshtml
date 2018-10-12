@@ -9,97 +9,144 @@
     <div>
         <h4>Client</h4>
         <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Title)
-            </dt>
+        <div class="container">
+            <div class="col-md-6">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Title)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Title)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.FirstName)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.FirstName)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.LastName)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.LastName)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.LastName)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.BirthDate)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.BirthDate)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.BirthDate)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.BirthDate)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PhoneNumber)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.PhoneNumber)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.AddressLine1)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AddressLine1)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.AddressLine1)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.AddressLine1)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.AddressLine2)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AddressLine2)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.AddressLine2)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.AddressLine2)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.ZIPCode)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ZIPCode)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.ZIPCode)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.ZIPCode)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.City)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.City)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.City)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.City)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Country)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Country)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Country)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Country)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Mail)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Mail)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Mail)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Mail)
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <dl class="dl-horizontal">
+                    @foreach (var item in Model.BookingFiles)
+                    {
+                        <dt>
+                            @Html.DisplayNameFor(model => item.ID)
+                        </dt>
 
+                        <dd>
+                            @Html.DisplayFor(model => item.ID)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => item.Travel.Destination.Country)
+                        </dt>
 
-        </dl>
+                        <dd>
+                            @Html.DisplayFor(model => item.Travel.Destination.Country)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => item.Travel.DateGo)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => item.Travel.DateGo)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => item.Travel.DateBack)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => item.Travel.DateBack)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => item.BookingFileState)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => item.BookingFileState)
+                        </dd>
+
+                    }
+                </dl>
+            </div>
+        </div>
+    
+
     </div>
     <p>
         @Html.ActionLink("Modifier", "Edit", new { id = Model.ID }) |
