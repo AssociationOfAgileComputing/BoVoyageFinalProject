@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using BoVoyageFinalProject.Models;
 using System.Data.Entity;
 using System.Net;
+using BoVoyageFinalProject.Tools;
 
 namespace BoVoyageFinalProject.Controllers
 {
@@ -63,6 +64,7 @@ namespace BoVoyageFinalProject.Controllers
             }
             if (travels.Count==0)
             {
+                Display("Malheureusement, nous n'avons pas de voyages à cette destination");
                 return RedirectToAction("Index");
             }
             return View(travels);
@@ -78,6 +80,7 @@ namespace BoVoyageFinalProject.Controllers
             }
             if (travels.Count == 0)
             {
+                Display("Malheureusement, nous n'avons pas voyagé à ces dates");
                 return RedirectToAction("Index");
             }
             return View(travels);
@@ -93,6 +96,7 @@ namespace BoVoyageFinalProject.Controllers
             }
             if (travels.Count == 0)
             {
+                Display("Malheureusement, nous n'avons pas voyagé sur ces valeurs");
                 return RedirectToAction("Index");
             }
             return View(travels);
