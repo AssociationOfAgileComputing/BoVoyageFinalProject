@@ -15,7 +15,7 @@ namespace BoVoyageFinalProject.Models
         [Column(TypeName = "datetime2")]
         public DateTime BirthDate { get; set; }
 
-        [Required(ErrorMessage ="Le champ {0} est obligatoire."]
+        [Required(ErrorMessage ="Le champ {0} est obligatoire.")]
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
