@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#separation{
+border-top:1px solid;
+color : blue;
+overflow : visible;
+text-align: center;
+height: 1px;
+}
