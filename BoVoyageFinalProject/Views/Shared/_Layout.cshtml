@@ -55,7 +55,7 @@
                                     Bonjour @customer.FirstName @customer.LastName<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="@Url.Action("Details","Customers")">Espace Client</a></li>
+                                    <li><a href="@Url.Action("Details","Customers", new { id = customer.ID })">Espace Client</a></li>
                                 </ul>
                             </li>
                             <li><a id="logout" style="color:white" href="@Url.Action("Logout", "customers")" class="btn btn-info"><i class="glyphicon glyphicon-log-out"></i></a></li>
@@ -74,7 +74,7 @@
             </footer>
         </div>
     </div>
-
+     
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
