@@ -116,7 +116,7 @@ namespace BoVoyageFinalProject.Controllers
             ViewBag.customer =  Session["CUSTOMER"] as BoVoyageFinalProject.Models.Customer;
             if (ViewBag.customer == null)
             {
-                Display("Il faut se loger");
+                Display("Veuillez vous connecter à votre espace pour effectuer une réservation");
                 return RedirectToAction("Index");
             }
             else
