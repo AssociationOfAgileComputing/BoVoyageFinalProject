@@ -1,8 +1,5 @@
 ﻿@model IEnumerable<BoVoyageFinalProject.Models.Customer>
 
-@{
-    Layout = null;
-}
 
 <!DOCTYPE html>
 
@@ -39,7 +36,7 @@
                 @Html.DisplayNameFor(model => model.Country)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                @Html.DisplayNameFor(model => model.Mail)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Password)
@@ -80,7 +77,7 @@
                 @Html.DisplayFor(modelItem => item.Country)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Email)
+                @Html.DisplayFor(modelItem => item.Mail)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Password)

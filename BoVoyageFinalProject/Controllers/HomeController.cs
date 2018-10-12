@@ -42,7 +42,7 @@ namespace BoVoyageFinalProject.Controllers
 		public ActionResult SendMail()
 		{
 			Display("Merci de nous avoir contactés nous vous recontacterons dans les meilleurs délais");
-			return RedirectToAction("Contact");
+			return RedirectToAction("Index");
 		}
         
         [Route("voyage-{region}-{pays}/{id}")]

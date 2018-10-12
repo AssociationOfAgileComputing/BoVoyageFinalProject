@@ -31,7 +31,8 @@
                         <span class="icon-bar"></span>
                     </button>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a>Back-Office | BoVoyage</a></li>
+                        <li>@Html.ActionLink("Back-Office | BoVoyage","Index","Dashboard")</li>
+
                     </ul>
 
                 </div>
@@ -42,9 +43,8 @@
                         <li>@Html.ActionLink("Voyage", "Index", "Travels")</li>
                         <li>@Html.ActionLink("Dossier de réservation", "Create", "BookingFiles")</li>
                         <li>@Html.ActionLink("Assurances", "Index", "Insurances")</li>
-                        @*<li>@Html.ActionLink("Delete", "Delete", "TravelAgenciesController")</li>
-                            <li>@Html.ActionLink("Details", "Details", "TravelAgenciesController")</li>
-                            <li>@Html.ActionLink("Edit", "Edit", "TravelAgenciesController")</li>*@
+                        <li>@Html.ActionLink("Clients","Index","Customers")</li>
+                        
                     </ul>
                     @if (manager == null)
                     {

@@ -13,7 +13,7 @@ using BoVoyageFinalProject.Models;
 
 namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 {
-	[Authentication]
+	//[Authentication]
     public class BookingFilesController : BaseController
     {
         

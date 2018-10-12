@@ -79,14 +79,19 @@ namespace BoVoyageFinalProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,BirthDate,PhoneNumber,AddressLine1,AddressLine2,ZIPCode,City,Country,Email,Password,Title,FirstName,LastName")] Customer customer)
+        public ActionResult Edit([Bind(Include = "ID,BirthDate,PhoneNumber,AddressLine1,AddressLine2,ZIPCode,City,Country,Mail,Password,Title,FirstName,LastName, ConfirmedPassword")] Customer customer)
         {
             if (ModelState.IsValid)
             {
+                customer.Password = customer.Password.HashMD5();
+                db.Configuration.ValidateOnSaveEnabled = false;
                 db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                db.Configuration.ValidateOnSaveEnabled = true;
+                Display("Les informations ont été modifiées avec succès !");
+                return RedirectToAction("Index", "Home", new { area = "" });
             }
+            Display("Veuillez corriger les erreurs", MessageType.ERROR);
             return View(customer);
         }
 
