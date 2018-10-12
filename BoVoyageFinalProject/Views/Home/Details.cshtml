@@ -1,0 +1,78 @@
+﻿@model BoVoyageFinalProject.Models.Travel
+
+@{
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Détails</title>
+</head>
+<body>
+    <div>
+        <h4>Voyages:</h4>
+        <hr />
+        <div class="col-md-6">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Destination.Country)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Destination.Country) - @Html.DisplayFor(model => model.Destination.Continent)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Destination.Area)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Destination.Area)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TravelAgency.Name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.TravelAgency.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.DateGo)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DateGo)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.DateBack)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DateBack)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SpaceAvailable)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.SpaceAvailable)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-6">
+            @if (Model.Destination.Pictures != null)
+            {
+                if (Model.Destination.Pictures.Count > 0)
+                {
+                    <img src="data:@Model.Destination.Pictures.First().ContentType;base64,@Convert.ToBase64String(Model.Destination.Pictures.First().Content)" class="img-thumbnail" />
+                }
+            }
+        </div>
+        
+    </div>
+    <p>        
+        @Html.ActionLink("Retour", "Index")
+    </p>
+</body>
+</html>
