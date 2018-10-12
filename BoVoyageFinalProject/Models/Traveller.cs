@@ -9,6 +9,11 @@ namespace BoVoyageFinalProject.Models
 {
     public class Traveller:Person
     {
+        public Traveller()
+        {
+            BookingFiles = new List<BookingFile>();
+        }
+
         [Required(ErrorMessage = "Le champ {0} est obligatoire.")]
         [Display(Name = "Date de naissance")]
         [DataType(DataType.Date)]

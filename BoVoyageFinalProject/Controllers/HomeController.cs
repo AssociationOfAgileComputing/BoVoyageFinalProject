@@ -60,11 +60,11 @@ namespace BoVoyageFinalProject.Controllers
             return View(travels);
         }
         
-        public ActionResult Search(string country)
+        public ActionResult Search(string pays)
         {
             var travels = db.Travels.Include(t => t.Destination)
                 .Include(t => t.Destination.Pictures)
-                .Include("TravelAgency").Where(x=>x.Destination.Country == country).ToList();
+                .Include("TravelAgency").Where(x=>x.Destination.Country == pays).ToList();
             if (travels == null)
             {
                 return HttpNotFound();
@@ -113,8 +113,7 @@ namespace BoVoyageFinalProject.Controllers
         public ActionResult Reservation(int? id)
         {
             ViewBag.travel = db.Travels.SingleOrDefault(x => x.ID == id);
-            ViewBag.customer =  Session["CUSTOMER"] as BoVoyageFinalProject.Models.Customer;
-            if (ViewBag.customer == null)
+            if (Session["CUSTOMER"] == null)
             {
                 Display("Veuillez vous connecter à votre espace pour effectuer une réservation");
                 return RedirectToAction("Index");
@@ -128,19 +127,82 @@ namespace BoVoyageFinalProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Reservation([Bind(Include = "ID,CustomerId,TravelId,CreditCardNumber,TotalPrice,TravellersNumber,IsCustomerTraveller,BookingFileState,BookingFileCancellationReason")] BookingFile bookingFile)
+        public ActionResult Reservation(int? id, [Bind(Include = "ID,CustomerId,TravelId,CreditCardNumber,TotalPrice,TravellersNumber,IsCustomerTraveller,BookingFileState,BookingFileCancellationReason")] BookingFile bookingFile)
         {
+            Travel travel = db.Travels.SingleOrDefault(x => x.ID == id);
             if (ModelState.IsValid)
             {
+                if (!bookingFile.CheckPlaceNumber(travel.SpaceAvailable))
+                {
+                    ViewBag.travel = db.Travels.SingleOrDefault(x => x.ID == id);
+                    Display("Nombre de place insuffisant", MessageType.ERROR);
+                    return View();
+                }
+
                 db.BookingFiles.Add(bookingFile);
                 db.SaveChanges();
-                Display("Le dossier de réservation est créé il est en attente de l'ajout de participants");
-                return RedirectToAction("Index");
+                Session["Travellers"] = bookingFile.TravellersNumber;
+                Display("Le voyage a été créé. Ajoutez maintenant les participants.");
+                return RedirectToAction("AddTravellers", new { id = bookingFile.ID});//Rediriger vers ajout participant
             }
-            
-            Display("Veuillez corriger les erreurs", MessageType.ERROR);
+            ViewBag.travel = db.Travels.SingleOrDefault(x => x.ID == id);
             return View();
         }
 
+        public ActionResult AddTravellers(int? id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddTravellers(int? id, List<Traveller> travellers)
+        {
+                BookingFile bookingFile = db.BookingFiles.Include(x => x.Travel).SingleOrDefault(x => x.ID == id);
+
+                if (ModelState.IsValid)
+                {
+                    if (bookingFile.IsCustomerTraveller)
+                {
+                    Customer user = (Customer) Session["CUSTOMER"];
+                    Traveller traveller = new Traveller
+                    {
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        BirthDate = user.BirthDate,
+                        Mail = user.Mail,
+                        Title = user.Title,
+                        PhoneNumber = user.PhoneNumber
+                    };
+                    travellers.Add(traveller);
+                }
+                    foreach (Traveller t in travellers)
+                    {
+                            var traveller = db.Travellers.SingleOrDefault(x => x.Mail == t.Mail);
+                            if (traveller == null)
+                            {
+                                traveller = t;
+                                db.Travellers.Add(traveller);
+                                db.SaveChanges();
+                            }
+
+                            traveller.BookingFiles.Add(bookingFile);
+
+                            bookingFile.Travellers.Add(traveller);
+                            bookingFile.Travel.SpaceAvailable--;
+                            db.Entry(bookingFile).State = EntityState.Modified;
+                    }
+                    bookingFile.GetTotalPrice();
+                    db.SaveChanges();
+                    Display($"Ajout des participants pour le dossier de réservation {bookingFile.ID} effectué avec succès.");
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    db.BookingFiles.Remove(bookingFile);
+                    db.SaveChanges();
+                    return View(travellers);
+                }
+            }
+        }
     }
-}

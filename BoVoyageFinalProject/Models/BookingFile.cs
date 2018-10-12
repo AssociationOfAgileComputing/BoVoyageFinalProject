@@ -11,6 +11,12 @@ namespace BoVoyageFinalProject.Models
     public class BookingFile : BaseModel
 
     {
+        public BookingFile()
+        {
+            Insurances = new List<Insurance>();
+            Travellers = new List<Traveller>();
+        }
+
         public int CustomerId { get; set; }
 
         [ForeignKey("CustomerId")]
@@ -46,7 +52,23 @@ namespace BoVoyageFinalProject.Models
 
 		public void GetTotalPrice()
         {
-            this.TotalPrice = ((Travel.Price * TravellersNumber));
+            int totalTravellers = TravellersNumber;
+            if (IsCustomerTraveller)
+            {
+                totalTravellers++;
+            }
+
+            this.TotalPrice = ((Travel.Price * totalTravellers));
+        }
+
+        public bool CheckPlaceNumber(int placeNumber)
+        {
+            int places = TravellersNumber;
+            if (IsCustomerTraveller)
+            {
+                places++;
+            }
+            return placeNumber >= places;
         }
 
         public void CheckSolvency()
