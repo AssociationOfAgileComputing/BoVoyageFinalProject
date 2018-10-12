@@ -63,7 +63,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
                 return RedirectToAction("index", "Dashboard");
             }
             Display("Veuillez corriger les erreurs", MessageType.ERROR);
-            return View();
+            return View(salesManager);
         }
 
         // GET: BackOffice/SalesManagers/Edit/5
@@ -86,14 +86,19 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Mail,Password,Title,FirstName,LastName")] SalesManager salesManager)
+        public ActionResult Edit([Bind(Include = "ID, Mail, Password, Title, FirstName, LastName, ConfirmedPassword")] SalesManager salesManager)
         {
             if (ModelState.IsValid)
             {
+                salesManager.Password = salesManager.Password.HashMD5();
+                db.Configuration.ValidateOnSaveEnabled = false;
                 db.Entry(salesManager).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                db.Configuration.ValidateOnSaveEnabled = true;
+                Display("Les informatins ont été modifiées avec succès !");
+                return RedirectToAction("Index", "dashboard");
             }
+            Display("Veuillez corriger les erreurs", MessageType.ERROR);
             return View(salesManager);
         }
 
