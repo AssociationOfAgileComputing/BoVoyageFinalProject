@@ -12,7 +12,7 @@ namespace BoVoyageFinalProject.Validators
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var number = (string)value;
-            if (number.Length < 16 && number.Length >= 19)
+            if (number.Length <= 16 && number.Length >= 19)
             {
                 return new ValidationResult("Le numéro de carte de crédit doit contenir entre 16 et 19 caractères");
             }

@@ -1,36 +1,44 @@
 ﻿@model IEnumerable<BoVoyageFinalProject.Models.Travel>
 @{
     ViewBag.Title = "Home Page";
+   
 }
 
 <div class="panel-body">
-    <h2>Voyages:</h2>
-    @foreach (var item in Model)
-    {
-        <div class="card col-sm-3">
-            @if (item.Destination.Pictures != null)
-            {
-                if (item.Destination.Pictures.Count > 0)
+    
+    <div class="panel-primary">
+        <h2>TOP:</h2>
+        
+    </div>
+    <div class="panel-primary">
+        <h2>Voyages:</h2>
+        @foreach (var item in Model)
+        {
+            <div class="card col-sm-3">
+                @if (item.Destination.Pictures != null)
                 {
-                    <img src="data:@item.Destination.Pictures.First().ContentType;base64,@Convert.ToBase64String(item.Destination.Pictures.First().Content)" class="img-thumbnail" />
+                    if (item.Destination.Pictures.Count > 0)
+                    {
+                        <img src="data:@item.Destination.Pictures.First().ContentType;base64,@Convert.ToBase64String(item.Destination.Pictures.First().Content)" class="img-thumbnail" />
+                    }
                 }
-            }
-            <div class="card-body" style="width: 18rem;">
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Destination.Country)</h5>
-                <p class="card-text">
-                    <br />
-                    @Html.DisplayNameFor(model => model.DateGo) : @Html.DisplayFor(modelItem => item.DateGo)
-                    <br />
-                    @Html.DisplayNameFor(model => model.DateBack) : @Html.DisplayFor(modelItem => item.DateBack)
-                    <br />
-                    @Html.DisplayNameFor(model => model.Price) : @Html.DisplayFor(modelItem => item.Price)
-                    <br />
-                </p>
-                <a href="@Url.Action("Details", new { id=item.ID,pays=item.Destination.Country,region=item.Destination.Area})" class="btn btn-primary"> <i class="glyphicon glyphicon-info-sign"> Details</i> </a>
-                <a href="#" class="btn btn-primary"> <i class="glyphicon glyphicon-apple"> Reserver</i> </a>
+                <div class="card-body" style="width: 18rem;">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Destination.Country)</h5>
+                    <p class="card-text">
+                        <br />
+                        @Html.DisplayNameFor(model => model.DateGo) : @Html.DisplayFor(modelItem => item.DateGo)
+                        <br />
+                        @Html.DisplayNameFor(model => model.DateBack) : @Html.DisplayFor(modelItem => item.DateBack)
+                        <br />
+                        @Html.DisplayNameFor(model => model.Price) : @Html.DisplayFor(modelItem => item.Price)
+                        <br />
+                    </p>
+                    <a href="@Url.Action("Details", new { id=item.ID,pays=item.Destination.Country,region=item.Destination.Area})" class="btn btn-primary"> <i class="glyphicon glyphicon-info-sign"> Details</i> </a>
+                    <a href="@Url.Action("Reservation", new {id=item.ID})" class="btn btn-primary"> <i class="glyphicon glyphicon-apple"> Reserver</i> </a>
+                </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>
         <div class="panel-body">
             <h3>Recherche:</h3>
