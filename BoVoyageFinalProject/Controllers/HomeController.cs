@@ -14,7 +14,7 @@ namespace BoVoyageFinalProject.Controllers
 	{
 		public ActionResult Index()
 		{
-			var travels = db.Travels.Include(t => t.Destination).Include(t => t.Destination.Pictures).Include("TravelAgency").ToList();
+			var travels = db.Travels.Include(t => t.Destination).Include(t => t.Destination.Pictures).Include("TravelAgency").OrderBy(x => x.DateGo).ToList();
 			return View(travels);
 		}
 
@@ -107,6 +107,39 @@ namespace BoVoyageFinalProject.Controllers
                 return RedirectToAction("Index");
             }
             return View(travels);
+        }
+
+        //GET
+        public ActionResult Reservation(int? id)
+        {
+            ViewBag.travel = db.Travels.SingleOrDefault(x => x.ID == id);
+            ViewBag.customer =  Session["CUSTOMER"] as BoVoyageFinalProject.Models.Customer;
+            if (ViewBag.customer == null)
+            {
+                Display("Veuillez vous connecter à votre espace pour effectuer une réservation");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
+            
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Reservation([Bind(Include = "ID,CustomerId,TravelId,CreditCardNumber,TotalPrice,TravellersNumber,IsCustomerTraveller,BookingFileState,BookingFileCancellationReason")] BookingFile bookingFile)
+        {
+            if (ModelState.IsValid)
+            {
+                db.BookingFiles.Add(bookingFile);
+                db.SaveChanges();
+                Display("Le voyage a été attend le ajout de participant.");
+                return RedirectToAction("Index");//Rediriger vers ajout participant
+            }
+            
+            Display("Veuillez corriger les erreurs", MessageType.ERROR);
+            return View();
         }
 
     }
