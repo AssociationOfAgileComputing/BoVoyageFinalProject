@@ -10,34 +10,42 @@ using BoVoyageFinalProject.Tools;
 
 namespace BoVoyageFinalProject.Controllers
 {
-    public class HomeController : BaseController
-    {
-        public ActionResult Index()
-        {
-            var travels = db.Travels.Include(t => t.Destination).Include(t => t.Destination.Pictures).Include("TravelAgency").ToList();
-            return View(travels);
-        }
+	public class HomeController : BaseController
+	{
+		public ActionResult Index()
+		{
+			var travels = db.Travels.Include(t => t.Destination).Include(t => t.Destination.Pictures).Include("TravelAgency").ToList();
+			return View(travels);
+		}
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Bienvenue sur l'application BoVoyage";
-            var modelInfo = new Info
-            {
-                DevName = "Association of Agile Computing",
-                Address = "rue de la bonne Entente - Paris",
-                ContactMail = "a2c@gmail.com",
-                CreatedDate = "Octobre 2008"
-            };
+		public ActionResult About()
+		{
+			ViewBag.Message = "Bienvenue sur l'application BoVoyage";
+			var modelInfo = new Info
+			{
+				DevName = "Association of Agile Computing",
+				Address = "rue de la bonne Entente - Paris",
+				ContactMail = "a2c@gmail.com",
+				CreatedDate = "Octobre 2008"
+			};
 
-            return View(modelInfo);
-        }
+			return View(modelInfo);
+		}
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Contacter le service commercial";
+		public ActionResult Contact()
+		{
+			ViewBag.Message = "Contacter le service commercial";
 
             return View();
         }
+
+		public ActionResult SendMail()
+		{
+			Display("Merci de nous avoir contactés nous vous recontacterons dans les meilleurs délais");
+			return RedirectToAction("Contact");
+		}
+
+        [Route("DetailVoyageRoute")]
         [Route("voyage-{region}-{pays}/{id}")]
         public ActionResult Details(int? id)
         {
