@@ -44,8 +44,7 @@ namespace BoVoyageFinalProject.Controllers
 			Display("Merci de nous avoir contactés nous vous recontacterons dans les meilleurs délais");
 			return RedirectToAction("Contact");
 		}
-
-        [Route("DetailVoyageRoute")]
+        
         [Route("voyage-{region}-{pays}/{id}")]
         public ActionResult Details(int? id)
         {
