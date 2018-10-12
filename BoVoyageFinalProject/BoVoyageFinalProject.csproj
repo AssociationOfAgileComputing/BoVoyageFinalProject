@@ -175,6 +175,7 @@
     <Compile Include="Models\DestinationPicture.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\BookingFile.cs" />
+    <Compile Include="Models\Info.cs" />
     <Compile Include="Models\Insurance.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Person.cs" />
@@ -412,7 +413,6 @@
     <Content Include="Scripts\tinymce\themes\modern\theme.min.js" />
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
-    <Content Include="tourist_bag-128.ico" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

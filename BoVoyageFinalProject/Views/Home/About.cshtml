@@ -1,7 +1,11 @@
-﻿@{
-    ViewBag.Title = "About";
+﻿@model BoVoyageFinalProject.Models.Info
+@{
+    ViewBag.Title = "A Propos";
 }
-<h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<p>Application développée par : <span style="font-weight:bold">@Model.DevName</span></p>
+<p>Adresse postale : @Model.Address</p>
+<p>Contact:@Model.ContactMail</p>
+<p>&copy;@Model.CreatedDate</p>
+
