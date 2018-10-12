@@ -134,8 +134,8 @@ namespace BoVoyageFinalProject.Controllers
             {
                 db.BookingFiles.Add(bookingFile);
                 db.SaveChanges();
-                Display("Le voyage a été attend le ajout de participant.");
-                return RedirectToAction("Index");//Rediriger vers ajout participant
+                Display("Le dossier de réservation est créé il est en attente de l'ajout de participants");
+                return RedirectToAction("Index");
             }
             
             Display("Veuillez corriger les erreurs", MessageType.ERROR);
