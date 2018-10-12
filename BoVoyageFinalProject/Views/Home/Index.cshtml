@@ -14,15 +14,15 @@
         <h2>Voyages:</h2>
         @foreach (var item in Model)
         {
-            <div class="card col-sm-3">
-                @if (item.Destination.Pictures != null)
-                {
-                    if (item.Destination.Pictures.Count > 0)
+            <div class="card col-sm-4">               
+                <div class="card-body">
+                    @if (item.Destination.Pictures != null)
                     {
-                        <img src="data:@item.Destination.Pictures.First().ContentType;base64,@Convert.ToBase64String(item.Destination.Pictures.First().Content)" class="img-thumbnail" />
+                        if (item.Destination.Pictures.Count > 0)
+                        {
+                            <img src="data:@item.Destination.Pictures.First().ContentType;base64,@Convert.ToBase64String(item.Destination.Pictures.First().Content)" class="img-thumbnail" />
+                        }
                     }
-                }
-                <div class="card-body" style="width: 18rem;">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.Destination.Country)</h5>
                     <p class="card-text">
                         <br />
