@@ -567,7 +567,7 @@
     <Content Include="Views\Shared\_PartialDisplay.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
-    <Content Include="Views\Home\Recherche.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\SearchPrice.cshtml" />
     <Content Include="Views\Home\SearchDate.cshtml" />
   </ItemGroup>

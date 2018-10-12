@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Recherche par date</title>
 </head>
-<body>    
+<body>
     <table class="table">
         <tr>
             <th>
@@ -34,30 +34,33 @@
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Destination.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TravelAgency.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateGo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateBack)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SpaceAvailable)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TravelAgency.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateGo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateBack)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpaceAvailable)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+            </tr>
+        }
     </table>
+    <p>
+        @Html.ActionLink("Retour", "Index")
+    </p>
 </body>
 </html>
