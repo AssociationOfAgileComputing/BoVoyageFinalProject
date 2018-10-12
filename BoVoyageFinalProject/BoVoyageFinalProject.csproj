@@ -365,6 +365,8 @@
     <Content Include="Areas\BackOffice\Views\SalesManagers\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\SalesManagers\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\SalesManagers\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_LayoutForm.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_PartialDisplay.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
