@@ -7,7 +7,7 @@ namespace BoVoyageFinalProject.Models
     {
 
 
-        [Display(Name ="Civilité")]
+        [Display(Name = "Civilité")]
         public string Title { get; set; }
 
 
