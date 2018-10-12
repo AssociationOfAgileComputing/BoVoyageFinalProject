@@ -38,7 +38,14 @@ namespace BoVoyageFinalProject.Controllers
 
             return View();
         }
-        [Route("DetailVoyageRoute")]
+
+		public ActionResult SendMail()
+		{
+			Display("Merci de nous avoir contactés nous vous recontacterons dans les meilleurs délais");
+			return RedirectToAction("Index");
+		}
+        
+        [Route("voyage-{region}-{pays}/{id}")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -80,7 +87,7 @@ namespace BoVoyageFinalProject.Controllers
             }
             if (travels.Count == 0)
             {
-                Display("Malheureusement, nous n'avons pas voyagé à ces dates");
+                Display("Malheureusement, nous n'avons pas de voyages dans votre gamme de prix");
                 return RedirectToAction("Index");
             }
             return View(travels);
@@ -96,7 +103,7 @@ namespace BoVoyageFinalProject.Controllers
             }
             if (travels.Count == 0)
             {
-                Display("Malheureusement, nous n'avons pas voyagé sur ces valeurs");
+                Display("Malheureusement, nous n'avons pas de voyages à ces dates");
                 return RedirectToAction("Index");
             }
             return View(travels);

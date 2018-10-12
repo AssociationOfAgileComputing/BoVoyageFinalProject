@@ -10,174 +10,164 @@
 	ViewBag.Title = "Nouveau dossier de réservation";
 }
 
-<fieldset>
-	<legend>Liste des participants</legend>
-	@using (Html.BeginForm("AjouterParticipant", "DossierReservation"))
-	{
-		@Html.AntiForgeryToken()
+<div class="form-horizontal">
+	<h4>Dossier de réservation</h4>
+	<hr />
+	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-		<div class="row">
-			<div class="form-group col-sm-12">
-				@Html.LabelFor(x => bookingFile.ID, htmlAttributes: new { @class = "control-label" })
-				@Html.EditorFor(x => bookingFile.ID, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(x => bookingFile.ID, "", new { @class = "text-danger" })
-			</div>
-		</div>
+	<fieldset>
+		<legend>Liste des participants</legend>
+		@using (Html.BeginForm("AjouterParticipant", "DossierReservation"))
+		{
+			@Html.AntiForgeryToken()
 
-		@Html.HiddenFor(x => bookingFile.Travellers)
-		<input type="submit" value="Enregistrer le dossier de réservation" class="btn btn-info" />
-
-		<div class="row">
-			<div class="form-group col-sm-12 col-md-3">
-				@Html.LabelFor(x => newTraveller.Title, htmlAttributes: new { @class = "control-label" })
-				@Html.EditorFor(x => newTraveller.Title, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(x => newTraveller.Title, "", new { @class = "text-danger" })
-			</div>
-
-			<div class="form-group col-sm-12 col-md-3">
-				@Html.LabelFor(x => newTraveller.LastName, htmlAttributes: new { @class = "control-label" })
-				@Html.EditorFor(x => newTraveller.LastName, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(x => newTraveller.LastName, "", new { @class = "text-danger" })
-			</div>
-
-			<div class="form-group col-sm-12 col-md-3">
-				@Html.LabelFor(x => newTraveller.FirstName, htmlAttributes: new { @class = "control-label" })
-				@Html.EditorFor(x => newTraveller.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(x => newTraveller.FirstName, "", new { @class = "text-danger" })
-			</div>
-
-			<div class="form-group col-sm-12 col-md-3">
-				@Html.LabelFor(x => newTraveller.PhoneNumber, htmlAttributes: new { @class = "control-label" })
-				@Html.EditorFor(x => newTraveller.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(x => newTraveller.PhoneNumber, "", new { @class = "text-danger" })
-			</div>
-
-			<div class="form-group col-sm-12 col-md-3">
-				@Html.LabelFor(x => newTraveller.Mail, htmlAttributes: new { @class = "control-label" })
-				@Html.EditorFor(x => newTraveller.Mail, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(x => newTraveller.Mail, "", new { @class = "text-danger" })
-			</div>
-
-		</div>
-		<input type="submit" value="Ajouter un participant" class="btn btn-info" />
-	}
-
-	@*<table class="table table-bordered">
-			@foreach (var traveller in bookingFile.Travellers)
-			{
-				<tr>
-					<td>@traveller.Title</td>
-					<td>@traveller.LastName</td>
-					<td>@traveller.FirstName</td>
-					<td>@traveller.PhoneNumber</td>
-				</tr>
-			}
-		</table>*@
-</fieldset>
-
-@*@using (Html.BeginForm())
-	{
-		@Html.AntiForgeryToken()
-
-		<div class="row">
-			<div class="form-group col-sm-12">
-				@Html.LabelFor(x => bookingFile.ID, htmlAttributes: new { @class = "control-label" })
-				@Html.EditorFor(x => bookingFile.ID, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(x => bookingFile.ID, "", new { @class = "text-danger" })
-			</div>
-		</div>
-		@Html.HiddenFor(x => bookingFile.Travellers)
-		<input type="submit" value="Enregistrer le dossier de réservation" class="btn btn-info" />
-	}
-
-	<div class="form-horizontal">
-		<h4>Dossier de réservation</h4>
-		<hr />
-		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-		<div class="form-group">
-			@Html.LabelFor(model => model.IsCustomerTraveller, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				<div class="checkbox">
-					@Html.EditorFor(model => model.IsCustomerTraveller)
-					@Html.ValidationMessageFor(model => model.IsCustomerTraveller, "", new { @class = "text-danger" })
+			<div class="row">
+				<div class="form-group col-sm-12">
+					@Html.LabelFor(x => bookingFile.ID, htmlAttributes: new { @class = "control-label" })
+					@Html.EditorFor(x => bookingFile.ID, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(x => bookingFile.ID, "", new { @class = "text-danger" })
 				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			@Html.LabelFor(model => model.CustomerId, "CustomerId", htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.DropDownList("CustomerId", null, htmlAttributes: new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
-			</div>
-		</div>
+			@Html.HiddenFor(x => bookingFile.Travellers)
+			<input type="submit" value="Enregistrer le dossier de réservation" class="btn btn-info" />
 
-		<div class="form-group">
-			@Html.LabelFor(model => model.TravelId, "TravelId", htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.DropDownList("TravelId", null, htmlAttributes: new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.TravelId, "", new { @class = "text-danger" })
-			</div>
-		</div>
 
-		<div class="form-group">
-			@Html.LabelFor(model => model.CreditCardNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.EditorFor(model => model.CreditCardNumber, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(model => model.CreditCardNumber, "", new { @class = "text-danger" })
-			</div>
-		</div>
-
-		<div class="form-group">
-			@Html.LabelFor(model => model.TotalPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.EditorFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(model => model.TotalPrice, "", new { @class = "text-danger" })
-			</div>
-		</div>
-
-		<div class="form-group">
-			@Html.LabelFor(model => model.TravellersNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.EditorFor(model => model.TravellersNumber, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(model => model.TravellersNumber, "", new { @class = "text-danger" })
-			</div>
-		</div>
-
-		<div class="form-group">
-			@Html.LabelFor(model => model.IsCustomerTraveller, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				<div class="checkbox">
-					@Html.EditorFor(model => model.IsCustomerTraveller)
-					@Html.ValidationMessageFor(model => model.IsCustomerTraveller, "", new { @class = "text-danger" })
+			<div class="row">
+				<div class="form-group col-sm-12 col-md-3">
+					@Html.LabelFor(x => newTraveller.Title, htmlAttributes: new { @class = "control-label" })
+					@Html.EditorFor(x => newTraveller.Title, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(x => newTraveller.Title, "", new { @class = "text-danger" })
 				</div>
-			</div>
-		</div>
 
-		<div class="form-group">
-			@Html.LabelFor(model => model.BookingFileState, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.EditorFor(model => model.BookingFileState, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(model => model.BookingFileState, "", new { @class = "text-danger" })
-			</div>
-		</div>
+				<div class="form-group col-sm-12 col-md-3">
+					@Html.LabelFor(x => newTraveller.LastName, htmlAttributes: new { @class = "control-label" })
+					@Html.EditorFor(x => newTraveller.LastName, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(x => newTraveller.LastName, "", new { @class = "text-danger" })
+				</div>
 
-		<div class="form-group">
-			@Html.LabelFor(model => model.BookingFileCancellationReason, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.EditorFor(model => model.BookingFileCancellationReason, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(model => model.BookingFileCancellationReason, "", new { @class = "text-danger" })
-			</div>
-		</div>
+				<div class="form-group col-sm-12 col-md-3">
+					@Html.LabelFor(x => newTraveller.FirstName, htmlAttributes: new { @class = "control-label" })
+					@Html.EditorFor(x => newTraveller.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(x => newTraveller.FirstName, "", new { @class = "text-danger" })
+				</div>
 
-		<div class="form-group">
-			<div class="col-md-offset-2 col-md-10">
-				<input type="submit" value="Valider la réservation" class="btn btn-default" />
+				<div class="form-group col-sm-12 col-md-3">
+					@Html.LabelFor(x => newTraveller.PhoneNumber, htmlAttributes: new { @class = "control-label" })
+					@Html.EditorFor(x => newTraveller.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(x => newTraveller.PhoneNumber, "", new { @class = "text-danger" })
+				</div>
+
+				<div class="form-group col-sm-12 col-md-3">
+					@Html.LabelFor(x => newTraveller.Mail, htmlAttributes: new { @class = "control-label" })
+					@Html.EditorFor(x => newTraveller.Mail, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(x => newTraveller.Mail, "", new { @class = "text-danger" })
+				</div>
+
+			</div>
+			<input type="submit" value="Ajouter un participant" class="btn btn-info" />
+		}
+
+		@*<table class="table table-bordered">
+				@foreach (var traveller in bookingFile.Travellers)
+				{
+					<tr>
+						<td>@traveller.Title</td>
+						<td>@traveller.LastName</td>
+						<td>@traveller.FirstName</td>
+						<td>@traveller.PhoneNumber</td>
+					</tr>
+				}
+			</table>*@
+	</fieldset>
+
+
+
+
+
+	@*<div class="form-group">
+		@Html.LabelFor(model => model.IsCustomerTraveller, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			<div class="checkbox">
+				@Html.EditorFor(model => model.IsCustomerTraveller)
+				@Html.ValidationMessageFor(model => model.IsCustomerTraveller, "", new { @class = "text-danger" })
 			</div>
 		</div>
 	</div>
-	}*@
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.CustomerId, "CustomerId", htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.DropDownList("CustomerId", null, htmlAttributes: new { @class = "form-control" })
+			@Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.TravelId, "TravelId", htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.DropDownList("TravelId", null, htmlAttributes: new { @class = "form-control" })
+			@Html.ValidationMessageFor(model => model.TravelId, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.CreditCardNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.CreditCardNumber, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(model => model.CreditCardNumber, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.TotalPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(model => model.TotalPrice, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.TravellersNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.TravellersNumber, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(model => model.TravellersNumber, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.IsCustomerTraveller, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			<div class="checkbox">
+				@Html.EditorFor(model => model.IsCustomerTraveller)
+				@Html.ValidationMessageFor(model => model.IsCustomerTraveller, "", new { @class = "text-danger" })
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.BookingFileState, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.BookingFileState, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(model => model.BookingFileState, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.BookingFileCancellationReason, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.BookingFileCancellationReason, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(model => model.BookingFileCancellationReason, "", new { @class = "text-danger" })
+		</div>
+	</div>*@
+
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="submit" value="Valider la réservation" class="btn btn-default" />
+		</div>
+	</div>
+</div>
+	
 
 <div>
 	@Html.ActionLink("Retour à la liste", "Index")
