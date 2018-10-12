@@ -77,6 +77,15 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("SectionScripts", required: false)
+    @RenderSection("scripts", required: false)
+    <script>
+        $(function () {
+            $("#logout").click(function () {
+                if (confirm("Voulez-vous vous déconnecter?") == false) {
+                    return false;
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -6,7 +6,6 @@
     Layout = null;
 }
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,59 +21,66 @@
     <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("BoVoyage WEB", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Agence", "Index", "TravelAgencies")</li>
-                    <li>@Html.ActionLink("Destination", "Index", "Destinations")</li>
-                    <li>@Html.ActionLink("Voyage", "Index", "Travels")</li>
-                    <li>@Html.ActionLink("Dossier de réservation", "Create", "BookingFiles")</li>
-                    <li>@Html.ActionLink("Assurances", "Index", "Insurances")</li>
-                    @*<li>@Html.ActionLink("Delete", "Delete", "TravelAgenciesController")</li>
-                        <li>@Html.ActionLink("Details", "Details", "TravelAgenciesController")</li>
-                        <li>@Html.ActionLink("Edit", "Edit", "TravelAgenciesController")</li>*@
-                </ul>
-                @if (manager == null)
-                {
+    <div class="container">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a style="color:red">Statut : non connecté !</a></li>
-                        <li>@Html.ActionLink("Se Connecter", "Login", "Authentication")</li>
+                        <li><a>Back-Office | BoVoyage</a></li>
                     </ul>
-                }
-                else
-                {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                Bonjour @manager.FirstName @manager.LastName<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="@Url.Action("Create","SalesManagers")">Créer un nouveau commercial</a></li>
-                                <li><a href="@Url.Action("Index","SalesManagers")">Lister les commerciaux</a></li>
-                            </ul>
-                        </li>
-                        <li><a id="logout" style="color:white" href="@Url.Action("Logout", "Authentication")" class="btn btn-info"><i class="glyphicon glyphicon-log-out"></i></a></li>
+
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Agence", "Index", "TravelAgencies")</li>
+                        <li>@Html.ActionLink("Destination", "Index", "Destinations")</li>
+                        <li>@Html.ActionLink("Voyage", "Index", "Travels")</li>
+                        <li>@Html.ActionLink("Dossier de réservation", "Create", "BookingFiles")</li>
+                        <li>@Html.ActionLink("Assurances", "Index", "Insurances")</li>
+                        @*<li>@Html.ActionLink("Delete", "Delete", "TravelAgenciesController")</li>
+                            <li>@Html.ActionLink("Details", "Details", "TravelAgenciesController")</li>
+                            <li>@Html.ActionLink("Edit", "Edit", "TravelAgenciesController")</li>*@
                     </ul>
-                }
+                    @if (manager == null)
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a style="color:red">Statut : non connecté !</a></li>
+                            <li>@Html.ActionLink("Se Connecter", "Login", "Authentication")</li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    Bonjour @manager.FirstName @manager.LastName<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("Create","SalesManagers")">Créer un nouveau commercial</a></li>
+                                    <li><a href="@Url.Action("Index","SalesManagers")">Lister les commerciaux</a></li>
+                                </ul>
+                            </li>
+                            <li><a id="logout" style="color:white" href="@Url.Action("Logout", "Authentication")" class="btn btn-info"><i class="glyphicon glyphicon-log-out"></i></a></li>
+                        </ul>
+                    }
+                </div>
             </div>
         </div>
+        @Html.Partial("_PartialDisplay")
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - BoVoyage by A²C</p>
+            </footer>
+        </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - BoVoyage by A²C</p>
-        </footer>
-    </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
