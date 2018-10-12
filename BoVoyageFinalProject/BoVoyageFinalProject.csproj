@@ -568,6 +568,8 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\Recherche.cshtml" />
+    <Content Include="Views\Home\SearchPrice.cshtml" />
+    <Content Include="Views\Home\SearchDate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
