@@ -2,6 +2,7 @@
 using BoVoyageFinalProject.Data;
 using BoVoyageFinalProject.Filters;
 using BoVoyageFinalProject.Models;
+using BoVoyageFinalProject.Tools;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -54,9 +55,10 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
             {
                 db.TravelAgencys.Add(travelAgency);
                 db.SaveChanges();
+                Display("Le agence a été créé avec succès.");
                 return RedirectToAction("Index");
             }
-
+            Display("Veuillez corriger les erreurs", MessageType.ERROR);
             return View(travelAgency);
         }
 

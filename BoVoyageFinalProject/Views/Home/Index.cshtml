@@ -7,25 +7,58 @@
     <h2>Voyages:</h2>
     @foreach (var item in Model)
     {
-    <div class="panel col-sm-3">
-        @if (item.Destination.Pictures != null)
-        {
-            if (item.Destination.Pictures.Count > 0)
+        <div class="panel col-sm-3">
+            @if (item.Destination.Pictures != null)
             {
-                <img src="data:@item.Destination.Pictures.First().ContentType;base64,@Convert.ToBase64String(item.Destination.Pictures.First().Content)" class="img-thumbnail" />
+                if (item.Destination.Pictures.Count > 0)
+                {
+                    <img src="data:@item.Destination.Pictures.First().ContentType;base64,@Convert.ToBase64String(item.Destination.Pictures.First().Content)" class="img-thumbnail" />
+                }
             }
-        }
 
-        <br />
-        @Html.DisplayNameFor(model => model.Destination) : @Html.DisplayFor(modelItem => item.Destination.Country)
-        <br />
-        @Html.DisplayNameFor(model => model.DateGo) : @Html.DisplayFor(modelItem => item.DateGo)
-        <br />
-        @Html.DisplayNameFor(model => model.DateBack) : @Html.DisplayFor(modelItem => item.DateBack)
-        <br />
-
-        <a href="@Url.Action("Details", new { id=item.ID,item.Destination.Country})" class="btn btn-info"> <i class="glyphicon glyphicon-info-sign"> Details</i> </a>
-        <a href="#" class="btn btn-info"> <i class="glyphicon glyphicon-apple"> S'incrire</i> </a>
-    </div>
+            <br />
+            @Html.DisplayNameFor(model => model.Destination) : @Html.DisplayFor(modelItem => item.Destination.Country)
+            <br />
+            @Html.DisplayNameFor(model => model.DateGo) : @Html.DisplayFor(modelItem => item.DateGo)
+            <br />
+            @Html.DisplayNameFor(model => model.DateBack) : @Html.DisplayFor(modelItem => item.DateBack)
+            <br />
+            @Html.DisplayNameFor(model => model.Price) : @Html.DisplayFor(modelItem => item.Price)
+            <br />
+            <a href="@Url.Action("Details", new { id=item.ID,item.Destination.Country})" class="btn btn-info"> <i class="glyphicon glyphicon-info-sign"> Details</i> </a>
+            <a href="#" class="btn btn-info"> <i class="glyphicon glyphicon-apple"> Reserver</i> </a>
+        </div>
     }
 </div>
+        <div class="panel-body">
+            <h3>Recherche:</h3>
+            <div class="col-md-4">
+                <h4>Pays:</h4>
+                <form class="" method="post" action="@Url.Action("Search", "Home")">
+                    <div class="form-group">
+                        <input type="text" name="pays" class="form-control" placeholder="Pays">
+                    </div>
+                    <button type="submit" class="btn btn-info">Rechercher</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <h4>Prix:</h4>
+                <form class="" method="post" action="@Url.Action("SearchPrice", "Home")">
+                    <div class="form-group">
+                        <input type="number" name="prixMin" class="form-control" placeholder="valeur minimale">
+                        <input type="number" name="prixMax" class="form-control" placeholder="valeur valeur maximale">
+                    </div>
+                    <button type="submit" class="btn btn-info">Rechercher</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <h4>Date:</h4>
+                <form class="" method="post" action="@Url.Action("SearchDate", "Home")">
+                    <div class="form-group">
+                        <input type="date" name="dateAller" class="form-control" placeholder="Date aller">
+                        <input type="date" name="dateRetour" class="form-control" placeholder="Date Retour">
+                    </div>
+                    <button type="submit" class="btn btn-info">Rechercher</button>
+                </form>
+            </div>
+        </div>

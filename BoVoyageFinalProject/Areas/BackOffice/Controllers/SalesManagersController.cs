@@ -10,6 +10,7 @@ using BoVoyageFinalProject.Controllers;
 using BoVoyageFinalProject.Data;
 using BoVoyageFinalProject.Filters;
 using BoVoyageFinalProject.Models;
+using BoVoyageFinalProject.Tools;
 
 namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 {
@@ -49,15 +50,19 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Mail,Password,Title,FirstName,LastName")] SalesManager salesManager)
+        public ActionResult Create([Bind(Exclude = "ID")] SalesManager salesManager)
         {
             if (ModelState.IsValid)
             {
+                salesManager.Password = salesManager.Password.HashMD5();
+                db.Configuration.ValidateOnSaveEnabled = false;
                 db.SalesManagers.Add(salesManager);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                db.Configuration.ValidateOnSaveEnabled = true;
+                Display("Le compte commercial a été créé avec succès.");
+                return RedirectToAction("index", "Dashboard");
             }
-
+            Display("Veuillez corriger les erreurs", MessageType.ERROR);
             return View(salesManager);
         }
 
@@ -81,14 +86,19 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Mail,Password,Title,FirstName,LastName")] SalesManager salesManager)
+        public ActionResult Edit([Bind(Include = "ID, Mail, Password, Title, FirstName, LastName, ConfirmedPassword")] SalesManager salesManager)
         {
             if (ModelState.IsValid)
             {
+                salesManager.Password = salesManager.Password.HashMD5();
+                db.Configuration.ValidateOnSaveEnabled = false;
                 db.Entry(salesManager).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                db.Configuration.ValidateOnSaveEnabled = true;
+                Display("Les informatins ont été modifiées avec succès !");
+                return RedirectToAction("Index", "dashboard");
             }
+            Display("Veuillez corriger les erreurs", MessageType.ERROR);
             return View(salesManager);
         }
 

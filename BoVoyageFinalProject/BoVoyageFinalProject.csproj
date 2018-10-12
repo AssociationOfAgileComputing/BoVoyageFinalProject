@@ -364,6 +364,8 @@
     <Content Include="Areas\BackOffice\Views\SalesManagers\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\SalesManagers\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\SalesManagers\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_LayoutForm.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_PartialDisplay.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
@@ -563,6 +565,9 @@
     <Content Include="Views\Customers\Login.cshtml" />
     <Content Include="Views\Shared\_PartialDisplay.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\Recherche.cshtml" />
+    <Content Include="Views\Home\SearchPrice.cshtml" />
+    <Content Include="Views\Home\SearchDate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

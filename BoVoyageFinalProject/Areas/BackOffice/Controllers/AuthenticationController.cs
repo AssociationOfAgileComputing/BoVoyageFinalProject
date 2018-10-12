@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BoVoyageFinalProject.Areas.BackOffice.Models;
 using BoVoyageFinalProject.Controllers;
+using BoVoyageFinalProject.Tools;
 
 namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 {
@@ -16,20 +17,22 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Login(AuthenticationLoginViewModels model)
         {
             if (ModelState.IsValid)
             {
-                var manager = db.SalesManagers.SingleOrDefault(x => x.Mail == model.Mail && x.Password == model.Password);
+                var hash = model.Password.HashMD5();
+                var manager = db.SalesManagers.SingleOrDefault(x => x.Mail == model.Mail && x.Password == hash);
                 if (manager == null)
                 {
-                    ModelState.AddModelError("mail", "Login / mot de passe invalide.");
+                    Display("Login/Mot de passe incorrect", MessageType.ERROR);
                     return View();
                 }
                 else
                 {
                     Session["SALESMANAGER"] = manager;
+                    if (TempData["REDIRECT"] != null)
+                        return Redirect(TempData["REDIRECT"].ToString());
                     return RedirectToAction("Index", "Dashboard", new { area = "BackOffice" });
                 }
             }

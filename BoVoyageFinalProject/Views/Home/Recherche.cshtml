@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<BoVoyageFinalProject.Models.Travel>
 
 @{
-
+    
 }
 
 <!DOCTYPE html>
@@ -9,14 +9,14 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Recherche</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Ajouter une nouvelle voyage", "Create")
-    </p>
     <table class="table">
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Destination.Country)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Destination.Continent)
             </th>
@@ -42,6 +42,9 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Destination.Country)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Destination.Continent)
                 </td>
                 <td>
@@ -59,13 +62,16 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
-                <td>
-                    @Html.ActionLink("Modfier", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Détails", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Supprimer", "Delete", new { id = item.ID })
-                </td>
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>*@
             </tr>
         }
     </table>
+    <p>
+        @Html.ActionLink("Retour", "Index")
+    </p>
 </body>
 </html>
