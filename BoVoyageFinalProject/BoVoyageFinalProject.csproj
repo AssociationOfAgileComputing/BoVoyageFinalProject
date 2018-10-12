@@ -156,6 +156,7 @@
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AuthenticationController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\BookingFilesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\CustomersController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DestinationsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DashboardController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\InsurancesController.cs" />
@@ -366,6 +367,8 @@
     <Content Include="Areas\BackOffice\Views\SalesManagers\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_LayoutForm.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_PartialDisplay.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Customers\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Customers\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
