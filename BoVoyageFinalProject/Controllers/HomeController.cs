@@ -37,14 +37,14 @@ namespace BoVoyageFinalProject.Controllers
 
             return View();
         }
-      
+        [Route("DetailVoyageRoute")]
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var travels = db.Travels.Include(t => t.Destination).Include(t => t.Destination.Pictures).Include("TravelAgency").ToList();
+            var travels = db.Travels.Include(t => t.Destination).Include(t => t.Destination.Pictures).Include("TravelAgency").SingleOrDefault(x => x.ID == id);
             if (travels == null)
             {
                 return HttpNotFound();
