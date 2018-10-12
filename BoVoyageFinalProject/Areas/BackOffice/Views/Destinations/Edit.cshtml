@@ -81,7 +81,7 @@
                     foreach (var picture in Model.Pictures)
                     {
                         <div class="col-md-3" id="div-@picture.ID">
-                            <p>@picture.Name <a href="#" class="delete" data-id="@picture.ID"><i class="glyphicon glyphicon-trash"></i></a></p>
+                            <p>@picture.Name <a href="#" class="delete btn-danger" data-id="@picture.ID"><i class="glyphicon glyphicon-trash">Delete</i></a></p>
                             <img src="data:@picture.ContentType;base64,@Convert.ToBase64String(picture.Content)" class="img-thumbnail" />
                             @*@Html.PictureTournament(picture, "img-thumbnail")*@
                         </div>
@@ -97,8 +97,7 @@
         <script>
 
      $('a.delete').click(function () {
-                var idPicture = $(this).data("id");
-                //alert(idPicture);
+                var idPicture = $(this).data("id");               
                 $.ajax({
                     url: '@Url.Action("deletePicture", "Destinations")',
                     type: 'POST',
