@@ -23,27 +23,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mail)
-        </td>
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
-
-            <a href="@Url.Action("edit", new {id = item.ID})"><i class=" glyphicon glyphicon-edit"></i></a>
-            <a href="@Url.Action("details", new {id = item.ID})"><i class="glyphicon glyphicon-search"></i></a>
-            <a href="@Url.Action("delete", new {id = item.ID})"><i class="fas fa-trash"></i></a>
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mail)
+            </td>
+            <td>
+                <button class="btn btn-primary">
+                    <a href="@Url.Action("details", new {id = item.ID})"><i class="fa fa-search fa-lg"></i></a>
+                </button>
+                <button class="btn btn-warning btn-group-lg">
+                    <a href="@Url.Action("edit", new {id = item.ID})"><i class="fa fa-pencil fa-lg"></i></a>
+                </button>
+                <button class="btn btn-danger btn-group-lg">
+                    <a href="@Url.Action("delete", new {id = item.ID})"><i class="fa fa-trash fa-lg"></i></a>
+                </button>
+            </td>
+        </tr>
+    }
 
 </table>
