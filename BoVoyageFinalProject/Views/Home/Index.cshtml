@@ -24,7 +24,7 @@
         @Html.DisplayNameFor(model => model.DateBack) : @Html.DisplayFor(modelItem => item.DateBack)
         <br />
 
-        <a href="#" class="btn btn-info"> <i class="glyphicon glyphicon-info-sign"> Details</i> </a>
+        <a href="@Url.Action("Details", new { id=item.ID,item.Destination.Country})" class="btn btn-info"> <i class="glyphicon glyphicon-info-sign"> Details</i> </a>
         <a href="#" class="btn btn-info"> <i class="glyphicon glyphicon-apple"> S'incrire</i> </a>
     </div>
     }

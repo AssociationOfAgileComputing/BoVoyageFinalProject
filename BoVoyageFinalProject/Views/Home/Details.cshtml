@@ -17,10 +17,16 @@
         <div class="col-md-6">
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.Destination.Continent)
+                    @Html.DisplayNameFor(model => model.Destination.Country)
                 </dt>
                 <dd>
-                    @Html.DisplayFor(model => model.Destination.Continent)
+                    @Html.DisplayFor(model => model.Destination.Country) - @Html.DisplayFor(model => model.Destination.Continent)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Destination.Area)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Destination.Area)
                 </dd>
                 <dt>
                     @Html.DisplayNameFor(model => model.TravelAgency.Name)
