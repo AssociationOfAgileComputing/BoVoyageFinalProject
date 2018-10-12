@@ -52,8 +52,16 @@
                 else
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a style="color:white">Bonjour @manager.FirstName @manager.LastName</a></li>
-                        <li><a id="logout" style="color:white" href="@Url.Action("Logout", "Authentication")"><i class="glyphicon glyphicon-log-out"></i></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Bonjour @manager.FirstName @manager.LastName<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Create","SalesManagers")">Créer un nouveau commercial</a></li>
+                                <li><a href="@Url.Action("index","SalesManagers")">Lister les commerciaux</a></li>
+                            </ul>
+                        </li>
+                        <li><a id="logout" style="color:white" href="@Url.Action("Logout", "Authentication")" class="btn btn-info"><i class="glyphicon glyphicon-log-out"></i></a></li>
                     </ul>
                 }
             </div>
