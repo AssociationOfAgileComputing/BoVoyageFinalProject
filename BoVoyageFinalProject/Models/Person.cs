@@ -14,14 +14,14 @@ namespace BoVoyageFinalProject.Models
         [Required(ErrorMessage = "Le champ {0} est obligatoire.")]
         [Display(Name = "Prénom")]
         [StringLength(50)]
-        [RegularExpression(@"^[A-Z][a-z\D\-\'][^$@#^%§!\p{P}\*""]+$")]
+        [RegularExpression(@"^[A-Z][a-z\D\-\'][^$@#^%§!\*""]+$")]
         public string FirstName { get; set; }
 
 
         [Required(ErrorMessage = "Le champ {0} est obligatoire.")]
         [Display(Name = "Nom")]
         [StringLength(50)]
-        [RegularExpression(@"^[A-Z][a-z\D\-\'][^$@#^%§!\p{P}\*""]+$")]
+        [RegularExpression(@"^[A-Z][a-z\D\-\'][^$@#^%§!\*""]+$")]
         public string LastName { get; set; }
 
         [NotMapped]
