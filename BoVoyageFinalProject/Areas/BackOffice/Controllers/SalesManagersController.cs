@@ -8,11 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using BoVoyageFinalProject.Controllers;
 using BoVoyageFinalProject.Data;
+using BoVoyageFinalProject.Filters;
 using BoVoyageFinalProject.Models;
 
 namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 {
-    public class SalesManagersController : BaseController
+	[Authentication]
+	public class SalesManagersController : BaseController
     {
 
         // GET: BackOffice/SalesManagers
