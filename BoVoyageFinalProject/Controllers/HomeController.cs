@@ -51,5 +51,21 @@ namespace BoVoyageFinalProject.Controllers
             }
             return View(travels);
         }
+        
+        public ActionResult Recherche(string pays)
+        {
+            var travels = db.Travels.Include(t => t.Destination)
+                .Include(t => t.Destination.Pictures)
+                .Include("TravelAgency").Where(x=>x.Destination.Country == pays).ToList();
+            if (travels == null)
+            {
+                return HttpNotFound();
+            }
+            if (travels.Count==0)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(travels);
+        }
     }
 }
