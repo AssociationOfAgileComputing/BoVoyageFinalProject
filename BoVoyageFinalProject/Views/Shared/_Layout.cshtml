@@ -50,8 +50,15 @@
                     else
                     {
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a style="color:blue">Bonjour @customer.FirstName @customer.LastName</a></li>
-                            <li><a style="color:blue" href="@Url.Action("logout", "customers")"><i class="glyphicon glyphicon-log-out"></i></a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    Bonjour @customer.FirstName @customer.LastName<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("Details","Customers")">Espace Client</a></li>
+                                </ul>
+                            </li>
+                            <li><a id="logout" style="color:white" href="@Url.Action("Logout", "customers")" class="btn btn-info"><i class="glyphicon glyphicon-log-out"></i></a></li>
                         </ul>
                     }
 

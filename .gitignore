@@ -260,3 +260,6 @@ paket-files/
 __pycache__/
 *.pyc
 /BoVoyageFinalProject/ConnectionString.config
+/BoVoyageFinalProject/Migrations/201810120253131_Correction.cs
+/BoVoyageFinalProject/Migrations/201810120253131_Correction.Designer.cs
+/BoVoyageFinalProject/Migrations/201810120253131_Correction.resx
