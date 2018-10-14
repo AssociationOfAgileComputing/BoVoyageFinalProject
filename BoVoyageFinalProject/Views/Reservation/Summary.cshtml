@@ -1,0 +1,63 @@
+﻿@model BoVoyageFinalProject.Models.BookingFile
+
+<style>
+    dt, dd {
+        padding-bottom: 10px;
+    }
+</style>
+
+<h3>Voici le résumé de votre réservation</h3>
+
+<dl class="dl-horizontal">
+    <dt>
+        Destination
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Travel.Destination.Continent) / @Html.DisplayFor(model => model.Travel.Destination.Country) / @Html.DisplayFor(model => model.Travel.Destination.Area)
+    </dd>
+    <dt>
+        Carte bancaire utilisée
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.CreditCardNumber)
+    </dd>
+    <dt>
+        Etat actuel de votre commande
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.BookingFileState)
+    </dd>
+    <dt>
+        Assurances
+    </dt>
+    <dd>
+        @foreach (var insurance in Model.Insurances)
+        {
+
+            <div><label>@insurance.InsuranceType</label> ( @insurance.InsuranceCost € )</div>
+        }
+    </dd>
+    <dt>
+        Participants au voyage
+    </dt>
+    <dd>
+        <table class="table table-bordered" width="100">
+            <tbody>
+                @foreach (var traveller in Model.Travellers)
+                {
+                    <tr>
+                        <td>@traveller.Title</td>
+                        <td>@traveller.Fullname</td>
+                        <td>@traveller.BirthDate.ToString("dd/MM/yyyy")</td>
+                        <td>@traveller.Mail</td>
+                        <td>@traveller.PhoneNumber</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </dd>
+    <dt>Prix total de votre réservation</dt>
+    <dd>@Model.TotalPrice €</dd>
+</dl>
+
+<a href="@Url.Action("Index","Home")" class="btn btn-primary">Retour à la page d'accueil</a>

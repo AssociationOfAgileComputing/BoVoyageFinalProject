@@ -1,10 +1,151 @@
-﻿@model IEnumerable<BoVoyageFinalProject.Models.Travel>
+﻿@model BoVoyageFinalProject.Controllers.HomeTopViewModel
 @{
     ViewBag.Title = "Accueil";
 }
 
 @Html.Partial("~/Views/Shared/_PartialTravelSearch.cshtml")
 
-<div class="panel-primary">
-    <h3>TOP</h3>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <h3>TOP 5 des voyages les moins coûteux</h3>
+        @if (Model.Top5Cheaper.Count() > 0)
+        {
+            foreach (var item in Model.Top5Cheaper)
+            {
+                <div class="col-sm-12 col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center">
+                            @if (item.Destination.Pictures != null)
+                            {
+                                if (item.Destination.Pictures.Count > 0)
+                                {
+                                    <img src="data:@item.Destination.Pictures.First().ContentType;base64,@Convert.ToBase64String(item.Destination.Pictures.First().Content)" style="height: 200px" class="img-thumbnail" />
+                                }
+                            }
+                            <div class="caption text-left">
+                                <h4>@Html.DisplayFor(modelItem => item.Destination.Area) <small>@Html.DisplayFor(modelItem => item.Destination.Country)</small></h4>
+                                <div>
+                                    <label>@Html.DisplayNameFor(model => item.DateGo)</label> : @Html.DisplayFor(modelItem => item.DateGo)
+                                </div>
+                                <div>
+                                    <label>@Html.DisplayNameFor(model => item.DateBack)</label> : @Html.DisplayFor(modelItem => item.DateBack)
+                                </div>
+                                <div>
+                                    <label>@Html.DisplayNameFor(model => item.Price)</label> : @Html.DisplayFor(modelItem => item.Price)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <a href="@Url.Action("Details", new { id=item.ID,pays=item.Destination.Country,region=item.Destination.Area})" class="btn btn-primary btn-block"> <i class="glyphicon glyphicon-info-sign"></i> Details </a>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <a href="@Url.Action("Reservation", new {id=item.ID})" class="btn btn-primary btn-block"> <i class="glyphicon glyphicon-apple"></i> Reserver </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Il n'y a aucun voyage dans le top 5 des voyages les moins coûteux.</p>
+        }
+    </div>
+
+    <div class="row">
+        <h3>TOP 5 des voyages ayant un départ au plus tôt</h3>
+        @if (Model.Top5CloserDeparture.Count() > 0)
+        {
+            foreach (var item in Model.Top5CloserDeparture)
+            {
+                <div class="col-sm-12 col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center">
+                            @if (item.Destination.Pictures != null)
+                            {
+                                if (item.Destination.Pictures.Count > 0)
+                                {
+                                    <img src="data:@item.Destination.Pictures.First().ContentType;base64,@Convert.ToBase64String(item.Destination.Pictures.First().Content)" style="height: 200px" class="img-thumbnail" />
+                                }
+                            }
+                            <div class="caption text-left">
+                                <h4>@Html.DisplayFor(modelItem => item.Destination.Area) <small>@Html.DisplayFor(modelItem => item.Destination.Country)</small></h4>
+                                <div>
+                                    <label>@Html.DisplayNameFor(model => item.DateGo)</label> : @Html.DisplayFor(modelItem => item.DateGo)
+                                </div>
+                                <div>
+                                    <label>@Html.DisplayNameFor(model => item.DateBack)</label> : @Html.DisplayFor(modelItem => item.DateBack)
+                                </div>
+                                <div>
+                                    <label>@Html.DisplayNameFor(model => item.Price)</label> : @Html.DisplayFor(modelItem => item.Price)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <a href="@Url.Action("Details", new { id=item.ID,pays=item.Destination.Country,region=item.Destination.Area})" class="btn btn-primary btn-block"> <i class="glyphicon glyphicon-info-sign"></i> Details </a>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <a href="@Url.Action("Reservation", new {id=item.ID})" class="btn btn-primary btn-block"> <i class="glyphicon glyphicon-apple"></i> Reserver </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Il n'y a aucun voyage dans le top 5 des voyages ayant un départ au plus tôt.</p>
+        }
+    </div>
+
+    <div class="row">
+        <h3>TOP 5 des voyages dont le pays est le plus présent</h3>
+        @if (Model.Top5MaxAreaOccurencies.Count() > 0)
+        {
+            foreach (var item in Model.Top5MaxAreaOccurencies)
+            {
+                <div class="col-sm-12 col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center">
+                            @if (item.Destination.Pictures != null)
+                            {
+                                if (item.Destination.Pictures.Count > 0)
+                                {
+                                    <img src="data:@item.Destination.Pictures.First().ContentType;base64,@Convert.ToBase64String(item.Destination.Pictures.First().Content)" style="height: 200px" class="img-thumbnail" />
+                                }
+                            }
+                            <div class="caption text-left">
+                                <h4>@Html.DisplayFor(modelItem => item.Destination.Area) <small>@Html.DisplayFor(modelItem => item.Destination.Country)</small></h4>
+                                <div>
+                                    <label>@Html.DisplayNameFor(model => item.DateGo)</label> : @Html.DisplayFor(modelItem => item.DateGo)
+                                </div>
+                                <div>
+                                    <label>@Html.DisplayNameFor(model => item.DateBack)</label> : @Html.DisplayFor(modelItem => item.DateBack)
+                                </div>
+                                <div>
+                                    <label>@Html.DisplayNameFor(model => item.Price)</label> : @Html.DisplayFor(modelItem => item.Price)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <a href="@Url.Action("Details", new { id=item.ID,pays=item.Destination.Country,region=item.Destination.Area})" class="btn btn-primary btn-block"> <i class="glyphicon glyphicon-info-sign"></i> Details </a>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <a href="@Url.Action("Reservation", new {id=item.ID})" class="btn btn-primary btn-block"> <i class="glyphicon glyphicon-apple"></i> Reserver </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Il n'y a aucun voyage dans le top 5 des voyages dont le pays est le plus présent.</p>
+        }
+    </div>
 </div>

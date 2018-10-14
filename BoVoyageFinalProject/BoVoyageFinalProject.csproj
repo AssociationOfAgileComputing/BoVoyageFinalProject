@@ -578,6 +578,7 @@
     <Content Include="Views\Home\Reservation.cshtml" />
     <Content Include="Views\Home\AddTravellers.cshtml" />
     <Content Include="Views\Shared\_PartialTravelSearch.cshtml" />
+    <Content Include="Views\Reservation\Summary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -585,7 +586,6 @@
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\BookingFiles\" />
-    <Folder Include="Views\Reservation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

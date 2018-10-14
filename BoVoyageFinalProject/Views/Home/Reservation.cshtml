@@ -10,50 +10,64 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Dossier de réservation</h4>
-        <span style="display: none">@Html.DisplayFor(modelItem => customer.LastName)</span>
-        @Html.DisplayFor(modelItem => travel.Destination.Country)
-        @Html.HiddenFor(modelItem => CustomerId)
-        @Html.HiddenFor(modelItem => TravelId)
+<div class="form-horizontal">
+    <h4>Dossier de réservation</h4>
+    <span style="display: none">@Html.DisplayFor(modelItem => customer.LastName)</span>
+    @Html.DisplayFor(modelItem => travel.Destination.Country)
+    @Html.HiddenFor(modelItem => CustomerId)
+    @Html.HiddenFor(modelItem => TravelId)
 
-        <p style="color: green; font-weight: bold">Nombre de place disponible : @travel.SpaceAvailable</p>
+    <p style="color: green; font-weight: bold">Nombre de place disponible : @travel.SpaceAvailable</p>
 
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreditCardNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreditCardNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreditCardNumber, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.CreditCardNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CreditCardNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CreditCardNumber, "", new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.TravellersNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TravellersNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TravellersNumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsCustomerTraveller, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsCustomerTraveller)
-                    @Html.ValidationMessageFor(model => model.IsCustomerTraveller, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-        @Html.HiddenFor(model => model.BookingFileState, new { @Value = "EN ATTENTE" })
+    <hr />
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Valider" class="btn btn-default" />
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsCustomerTraveller, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.IsCustomerTraveller)
+                @Html.ValidationMessageFor(model => model.IsCustomerTraveller, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TravellersNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TravellersNumber, new { htmlAttributes = new { @class = "form-control", min = 1 } })
+            @Html.ValidationMessageFor(model => model.TravellersNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Insurances, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("InsuranceList", ViewBag.InsuranceList as IEnumerable<SelectListItem>, new { @class = "form-control", multiple = "true" })
+            @Html.ValidationMessageFor(model => model.TravellersNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model.BookingFileState, new { @Value = "EN ATTENTE" })
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Valider" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>

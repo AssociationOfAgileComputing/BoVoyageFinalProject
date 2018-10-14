@@ -20,6 +20,7 @@ namespace BoVoyageFinalProject.Models
         [Column(TypeName = "datetime2")]
         public DateTime BirthDate { get; set; }
 
+        [Display(Name = "Numéro de téléphone")]
         [Required(ErrorMessage ="Le champ {0} est obligatoire.")]
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
@@ -33,5 +34,14 @@ namespace BoVoyageFinalProject.Models
 
         [Display(Name = "Dossiers de réservation")]
         public ICollection<BookingFile> BookingFiles { get; set; }
+
+        [NotMapped]
+        public int Age
+        {
+            get
+            {
+                return DateTime.Today.Year - BirthDate.Year;
+            }
+        }
     }
 }

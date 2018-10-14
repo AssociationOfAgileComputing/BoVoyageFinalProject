@@ -55,7 +55,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.TravelAgencyID, "TravelAgencyID", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.TravelAgencyID, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("TravelAgencyID", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.TravelAgencyID, "", new { @class = "text-danger" })
@@ -63,7 +63,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.DestinationID, "DestinationID", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.DestinationID, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("DestinationID", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.DestinationID, "", new { @class = "text-danger" })
@@ -83,3 +83,13 @@
     </div>
 </body>
 </html>
+
+@section scripts{
+    <script src="~/Scripts/jquery.datetimepicker.js"></script>
+    <script>
+        $(function () {
+            $('#DateGo').datetimepicker({ lang: 'fr', format: 'd/m/Y', timepicker: false });
+            $('#DateBack').datetimepicker({ lang: 'fr', format: 'd/m/Y', timepicker: false });
+        });
+    </script>
+} 

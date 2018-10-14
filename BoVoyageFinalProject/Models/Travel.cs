@@ -13,13 +13,13 @@ namespace BoVoyageFinalProject.Models
         [Required]
         [DataType(DataType.DateTime)]
         [Display(Name = "Date Aller")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode =true)]
         public DateTime DateGo { get; set; }
 
         [Required]
         [Display(Name = "Date retour")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]    
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]    
         [DateTravelSuperieur("DateGo")]
         public DateTime DateBack { get; set; }
 
@@ -35,12 +35,13 @@ namespace BoVoyageFinalProject.Models
 
         public ICollection<BookingFile> BookingFiles { get; set; }
 
-        [Display(Name = "Agences")]
+        [Display(Name = "Agence")]
         public int TravelAgencyID { get; set; }
 
         [ForeignKey("TravelAgencyID")]
         public TravelAgency TravelAgency { get; set; }
 
+        [Display(Name = "Destination")]
         public int DestinationID { get; set; }
 
         [ForeignKey("DestinationID")]
