@@ -577,6 +577,7 @@
     <Content Include="Views\Home\SearchDate.cshtml" />
     <Content Include="Views\Home\Reservation.cshtml" />
     <Content Include="Views\Home\AddTravellers.cshtml" />
+    <Content Include="Views\Shared\_PartialTravelSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

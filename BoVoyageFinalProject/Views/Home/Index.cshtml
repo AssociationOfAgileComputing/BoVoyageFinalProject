@@ -1,81 +1,10 @@
 ﻿@model IEnumerable<BoVoyageFinalProject.Models.Travel>
 @{
-    ViewBag.Title = "Home Page";
-
+    ViewBag.Title = "Accueil";
 }
 
-<div class="panel-body">
+@Html.Partial("~/Views/Shared/_PartialTravelSearch.cshtml")
 
-    <div class="panel-primary">
-        <h2>TOP:</h2>
-
-    </div>
-    <div class="panel-primary">
-        @if (Model.Count() > 0)
-        {
-            <h2>Voyages:</h2>
-            foreach (var item in Model)
-            {
-                <div class="card col-sm-4">
-                    <div class="card-body">
-                        @if (item.Destination.Pictures != null)
-                        {
-                            if (item.Destination.Pictures.Count > 0)
-                            {
-                                <img src="data:@item.Destination.Pictures.First().ContentType;base64,@Convert.ToBase64String(item.Destination.Pictures.First().Content)" class="img-thumbnail" />
-                            }
-                        }
-                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Destination.Country)</h5>
-                        <p class="card-text">
-                            <br />
-                            @Html.DisplayNameFor(model => model.DateGo) : @Html.DisplayFor(modelItem => item.DateGo)
-                            <br />
-                            @Html.DisplayNameFor(model => model.DateBack) : @Html.DisplayFor(modelItem => item.DateBack)
-                            <br />
-                            @Html.DisplayNameFor(model => model.Price) : @Html.DisplayFor(modelItem => item.Price)
-                            <br />
-                        </p>
-                        <a href="@Url.Action("Details", new { id=item.ID,pays=item.Destination.Country,region=item.Destination.Area})" class="btn btn-primary"> <i class="glyphicon glyphicon-info-sign"> Details</i> </a>
-                        <a href="@Url.Action("Reservation", new {id=item.ID})" class="btn btn-primary"> <i class="glyphicon glyphicon-apple"> Reserver</i> </a>
-                    </div>
-                </div>
-            }
-        }
-        else
-        {
-            <p>Il n'y a aucun voyage de disponible.</p>
-        }
-    </div>
-</div>
-<div class="panel-body">
-    <h3>Recherche:</h3>
-    <div class="col-md-4">
-        <h4>Pays:</h4>
-        <form class="" method="post" action="@Url.Action("Search", "Home")">
-            <div class="form-group">
-                <input type="text" name="pays" class="form-control" placeholder="Pays">
-            </div>
-            <button type="submit" class="btn btn-info">Rechercher</button>
-        </form>
-    </div>
-    <div class="col-md-4">
-        <h4>Prix:</h4>
-        <form class="" method="post" action="@Url.Action("SearchPrice", "Home")">
-            <div class="form-group">
-                <input type="number" name="prixMin" class="form-control" placeholder="valeur minimale">
-                <input type="number" name="prixMax" class="form-control" placeholder="valeur valeur maximale">
-            </div>
-            <button type="submit" class="btn btn-info">Rechercher</button>
-        </form>
-    </div>
-    <div class="col-md-4">
-        <h4>Date:</h4>
-        <form class="" method="post" action="@Url.Action("SearchDate", "Home")">
-            <div class="form-group">
-                <input type="date" name="dateAller" class="form-control" placeholder="Date aller">
-                <input type="date" name="dateRetour" class="form-control" placeholder="Date Retour">
-            </div>
-            <button type="submit" class="btn btn-info">Rechercher</button>
-        </form>
-    </div>
+<div class="panel-primary">
+    <h3>TOP</h3>
 </div>

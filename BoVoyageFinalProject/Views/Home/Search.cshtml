@@ -1,72 +1,55 @@
 ﻿@model IEnumerable<BoVoyageFinalProject.Models.Travel>
 
 @{
-    
+
 }
+@Html.Partial("~/Views/Shared/_PartialTravelSearch.cshtml")
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Recherche</title>
-</head>
-<body>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Destination.Country)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Destination.Continent)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TravelAgency.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateGo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateBack)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SpaceAvailable)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
+<div class="container">
+    <h3>Voyages</h3>
+    <div class="row">
+        @if (Model.Count() > 0)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Destination.Country)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Destination.Continent)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TravelAgency.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateGo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateBack)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SpaceAvailable)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>                
-            </tr>
+            foreach (var item in Model)
+            {
+                <div class="col-sm-12 col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center">
+                            @if (item.Destination.Pictures != null)
+                            {
+                                if (item.Destination.Pictures.Count > 0)
+                                {
+                                    <img src="data:@item.Destination.Pictures.First().ContentType;base64,@Convert.ToBase64String(item.Destination.Pictures.First().Content)" style="height: 200px" class="img-thumbnail" />
+                                }
+                            }
+                            <div class="caption text-left">
+                                <h4>@Html.DisplayFor(modelItem => item.Destination.Area) <small>@Html.DisplayFor(modelItem => item.Destination.Country)</small></h4>
+                                <div>
+                                    <label>@Html.DisplayNameFor(model => model.DateGo)</label> : @Html.DisplayFor(modelItem => item.DateGo)
+                                </div>
+                                <div>
+                                    <label>@Html.DisplayNameFor(model => model.DateBack)</label> : @Html.DisplayFor(modelItem => item.DateBack)
+                                </div>
+                                <div>
+                                    <label>@Html.DisplayNameFor(model => model.Price)</label> : @Html.DisplayFor(modelItem => item.Price)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <a href="@Url.Action("Details", new { id=item.ID,pays=item.Destination.Country,region=item.Destination.Area})" class="btn btn-primary btn-block"> <i class="glyphicon glyphicon-info-sign"></i> Details </a>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <a href="@Url.Action("Reservation", new {id=item.ID})" class="btn btn-primary btn-block"> <i class="glyphicon glyphicon-apple"></i> Reserver </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         }
-    </table>
-    <p>
-        @Html.ActionLink("Retour", "Index")
-    </p>
-</body>
-</html>
+        else
+        {
+            <p>Il n'y a aucun voyage de disponible pour cette recherche.</p>
+        }
+    </div>
+</div>
