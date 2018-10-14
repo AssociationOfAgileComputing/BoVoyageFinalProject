@@ -1,6 +1,71 @@
-﻿
+﻿@model BoVoyageFinalProject.Areas.BackOffice.Controllers.DashboardIndexViewModel
+
 @{
     ViewBag.Title = "Tableau de Bord";
 }
 
 <h2>Tableau de Bord</h2>
+
+<h4>Liste des 10 prochains voyages à partir d'aujourd'hui</h4>
+
+<table class="table table-bordered" width="100">
+    <thead>
+        <tr>
+            <th>Destination</th>
+            <th>Agence</th>
+            <th>Prix par personne</th>
+            <th>Date Aller</th>
+            <th>Date Retour</th>
+            <th>Places disponibles</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var travel in Model.NextTravels)
+        {
+            <tr>
+                <td>@travel.Destination.Area</td>
+                <td>@travel.TravelAgency.Name</td>
+                <td>@travel.Price</td>
+                <td>@travel.DateGo.ToString("dd/MM/yyyy")</td>
+                <td>@travel.DateBack.ToString("dd/MM/yyyy")</td>
+                <td>@travel.SpaceAvailable</td>
+                <td><a href="@Url.Action("Details","Travels", new { id=travel.ID, area = "backoffice"})" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<hr />
+
+<h4>Liste des 10 dossiers de réservations en attente pour les prochains voyages</h4>
+
+<table class="table table-bordered" width="100">
+    <thead>
+        <tr>
+            <th>Destination</th>
+            <th>Agence</th>
+            <th>Prix total</th>
+            <th>Date Aller</th>
+            <th>Date Retour</th>
+            <th>Participants</th>
+            <th>Assurances</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bookingFile in Model.BookingFilesWaitingStatus)
+        {
+            <tr>
+                <td>@bookingFile.Travel.Destination.Area</td>
+                <td>@bookingFile.Travel.TravelAgency.Name</td>
+                <td>@bookingFile.TotalPrice</td>
+                <td>@bookingFile.Travel.DateGo.ToString("dd/MM/yyyy")</td>
+                <td>@bookingFile.Travel.DateBack.ToString("dd/MM/yyyy")</td>
+                <td>@bookingFile.Travellers.Count</td>
+                <td>@bookingFile.Insurances.Count</td>
+                <td><a href="@Url.Action("Summary","Reservation", new { id = bookingFile.ID, area = ""})" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></a></td>
+            </tr>
+        }
+    </tbody>
+</table>
