@@ -16,12 +16,11 @@ namespace BoVoyageFinalProject.Controllers
         {
             HomeTopViewModel model = new HomeTopViewModel();
             var query = db.Travels.Include(t => t.Destination).Include(t => t.Destination.Pictures).Include("TravelAgency");
-            model.Top5Cheaper = query.OrderBy(x => x.Price).ToList();
-            model.Top5CloserDeparture = query.Where(x => x.DateGo >= DateTime.Now).OrderBy(x => x.DateGo).ToList();
+            model.Top5Cheaper = query.OrderBy(x => x.Price).Take(5).ToList();
+            model.Top5CloserDeparture = query.Where(x => x.DateGo >= DateTime.Now).OrderBy(x => x.DateGo).Take(5).ToList();
 
             // Get the area with most travel occurencies
-            string area = db.Travels.Select(x => x.Destination.Area).Max();
-            model.Top5MaxAreaOccurencies = query.Where(x => x.Destination.Area == area).ToList();
+            model.Top5MaxAreaOccurencies = query.OrderBy(x => x.Destination.Area).Take(5).ToList();
 
             return View(model);
         }
