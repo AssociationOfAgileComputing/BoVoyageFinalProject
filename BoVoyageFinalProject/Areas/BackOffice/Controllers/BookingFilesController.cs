@@ -21,7 +21,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         // GET: BackOffice/BookingFiles
         public ActionResult Index()
         {
-            var bookingFiles = db.BookingFiles.Include(b => b.Customer).Include(b => b.Travel);
+            var bookingFiles = db.BookingFiles.Include(b => b.Customer).Include(b => b.Travel).Include(b => b.Travel.Destination);
             return View(bookingFiles.ToList());
         }
 

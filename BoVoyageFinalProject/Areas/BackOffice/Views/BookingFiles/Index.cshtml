@@ -11,13 +11,7 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Customer.PhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Travel.ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreditCardNumber)
+                @Html.DisplayNameFor(model => model.Travel.Destination.Area)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TotalPrice)
@@ -40,13 +34,7 @@
     @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Travel.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreditCardNumber)
+                @Html.DisplayFor(modelItem => item.Travel.Destination.Area)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TotalPrice)
