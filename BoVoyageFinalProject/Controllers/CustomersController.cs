@@ -24,7 +24,7 @@ namespace BoVoyageFinalProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Include("BookingFiles").SingleOrDefault(x=>x.ID==id);
+            Customer customer = db.Customers.Include("BookingFiles").Include("BookingFiles.Travellers").Include("BookingFiles.Insurances").SingleOrDefault(x=>x.ID==id);
             foreach(var customerBookingFiles in customer.BookingFiles)
             {
                 customerBookingFiles.Travel = db.Travels.Include(t => t.Destination).SingleOrDefault(x => x.ID == customerBookingFiles.TravelId);
