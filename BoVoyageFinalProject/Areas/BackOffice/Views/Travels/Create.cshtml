@@ -82,12 +82,11 @@
 </body>
 </html>
 @section scripts{
-    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
     <script src="~/Scripts/jquery.datetimepicker.js"></script>
     <script>
         $(function () {
-            $('#DateGo').datetimepicker({ lang: 'fr', format: 'd/m/y' });
-            $('#DateBack').datetimepicker({ lang: 'fr', format: 'd/m/y' });
+            $('#DateGo').datetimepicker({ lang: 'fr', format: 'd/m/Y', timepicker: false });
+            $('#DateBack').datetimepicker({ lang: 'fr', format: 'd/m/Y', timepicker: false });
         });
     </script>
 } 
