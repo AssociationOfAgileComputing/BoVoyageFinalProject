@@ -35,12 +35,13 @@ namespace BoVoyageFinalProject.Models
 
         public ICollection<BookingFile> BookingFiles { get; set; }
 
-        [Display(Name = "Agences")]
+        [Display(Name = "Agence")]
         public int TravelAgencyID { get; set; }
 
         [ForeignKey("TravelAgencyID")]
         public TravelAgency TravelAgency { get; set; }
 
+        [Display(Name = "Destination")]
         public int DestinationID { get; set; }
 
         [ForeignKey("DestinationID")]
