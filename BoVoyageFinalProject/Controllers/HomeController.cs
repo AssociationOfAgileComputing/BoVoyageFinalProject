@@ -52,7 +52,9 @@ namespace BoVoyageFinalProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var travels = db.Travels.Include(t => t.Destination).Include(t => t.Destination.Pictures).Include("TravelAgency").SingleOrDefault(x => x.ID == id);
+            var travels = db.Travels.Include(t => t.Destination)
+                .Include(t => t.Destination.Pictures)
+                .Include("TravelAgency").SingleOrDefault(x => x.ID == id);
             if (travels == null)
             {
                 return HttpNotFound();
