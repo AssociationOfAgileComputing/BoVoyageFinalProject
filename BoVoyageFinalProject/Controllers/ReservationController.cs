@@ -1,37 +1,23 @@
-﻿using BoVoyageFinalProject.Models;
-
-using System;
-using System.Collections.Generic;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace BoVoyageFinalProject.Controllers
 {
     public class ReservationController : BaseController
     {
-        // GET: Reservation
-        public ActionResult Reservation(int id)
+        public ActionResult Summary(int? id)
         {
-            //TempData["Travel"]=db.Travels.Include(x=> x.TravelAgency).Include(x=>x.Destination).SingleOrDefault(x=>x.ID==Id));
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Reservation([Bind(Include = "CustomerId,TravelId,CreditCardNumber,TotalPrice,TravellersNumber,IsCustomerTraveller,BookingFileState,BookingFileCancellationReason")] BookingFile bookingFile)
-        {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.BookingFiles.Add(bookingFile);
-                db.SaveChanges();
-                TempData["BookingFileId"] = bookingFile.ID;
-                //TempData["Travellers"] = travellersNumber;
-                return RedirectToAction("Ajout", "Travellers");
+                return RedirectToAction("Index", "Home");
             }
 
-            ViewBag.CustomerId = new SelectList(db.Customers, "ID", "Email", bookingFile.CustomerId);
-            ViewBag.TravelId = new SelectList(db.Travels, "ID", "ID", bookingFile.TravelId);
+            var bookingFile = db.BookingFiles
+                .Include(x => x.Travellers)
+                .Include(x => x.Insurances)
+                .Include(x => x.Travel.Destination)
+                .SingleOrDefault(x => x.ID == id);
             return View(bookingFile);
         }
     }

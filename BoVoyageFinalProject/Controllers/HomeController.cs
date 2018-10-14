@@ -115,6 +115,11 @@ namespace BoVoyageFinalProject.Controllers
         //GET
         public ActionResult Reservation(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             ViewBag.travel = db.Travels.SingleOrDefault(x => x.ID == id);
 
             // Création de la liste des assurances a afficher sur la page de réservation
@@ -177,6 +182,11 @@ namespace BoVoyageFinalProject.Controllers
 
         public ActionResult AddTravellers(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.Titles = getTitles();
             return View();
         }
 
@@ -224,14 +234,21 @@ namespace BoVoyageFinalProject.Controllers
                 bookingFile.GetTotalPrice();
                 db.SaveChanges();
                 Display($"Ajout des participants pour le dossier de réservation {bookingFile.ID} effectué avec succès.");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Summary", "Reservation", new { id = bookingFile.ID });
             }
             else
             {
-                db.BookingFiles.Remove(bookingFile);
-                db.SaveChanges();
+                ViewBag.Titles = getTitles();
                 return View(travellers);
             }
+        }
+
+        private List<SelectListItem> getTitles()
+        {
+            return new SelectListItem[] {
+                new SelectListItem {Value = "Monsieur", Text= "Monsieur"},
+                new SelectListItem {Value = "Madame", Text= "Madame"}
+            }.ToList();
         }
 
         private void ReservationActionBeforeRedirect(int? id)
