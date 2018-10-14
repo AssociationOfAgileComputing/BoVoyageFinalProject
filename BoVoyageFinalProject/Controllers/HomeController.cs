@@ -143,9 +143,18 @@ namespace BoVoyageFinalProject.Controllers
             Travel travel = db.Travels.SingleOrDefault(x => x.ID == id);
             if (ModelState.IsValid)
             {
+                // Controle si le nombre de place maximum n'est pas dépassé
+                if (!bookingFile.CheckPlaceMaxCapacity())
+                {
+                    ReservationActionBeforeRedirect(id);
+                    Display("Nombre de participant maximum autorisé : 9", MessageType.ERROR);
+                    return View();
+                }
+
+                // Controle si le nombre de place est suffisant par rapport au nombre total de place à réserver
                 if (!bookingFile.CheckPlaceNumber(travel.SpaceAvailable))
                 {
-                    ViewBag.travel = db.Travels.SingleOrDefault(x => x.ID == id);
+                    ReservationActionBeforeRedirect(id);
                     Display("Nombre de place insuffisant", MessageType.ERROR);
                     return View();
                 }
@@ -162,7 +171,7 @@ namespace BoVoyageFinalProject.Controllers
                 Display("Le voyage a été créé. Ajoutez maintenant les participants.");
                 return RedirectToAction("AddTravellers", new { id = bookingFile.ID }); //Rediriger vers ajout participant
             }
-            ViewBag.travel = db.Travels.SingleOrDefault(x => x.ID == id);
+            ReservationActionBeforeRedirect(id);
             return View();
         }
 
@@ -223,6 +232,16 @@ namespace BoVoyageFinalProject.Controllers
                 db.SaveChanges();
                 return View(travellers);
             }
+        }
+
+        private void ReservationActionBeforeRedirect(int? id)
+        {
+            ViewBag.travel = db.Travels.SingleOrDefault(x => x.ID == id);
+            ViewBag.InsuranceList = db.Insurances.Select(x => new SelectListItem
+            {
+                Value = x.ID.ToString(),
+                Text = x.InsuranceType
+            }).ToList();
         }
     }
 

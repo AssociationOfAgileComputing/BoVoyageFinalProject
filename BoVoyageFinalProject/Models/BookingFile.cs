@@ -13,6 +13,7 @@ namespace BoVoyageFinalProject.Models
     {
         public BookingFile()
         {
+            IsCustomerTraveller = false;
             Insurances = new List<Insurance>();
             Travellers = new List<Traveller>();
         }
@@ -21,7 +22,7 @@ namespace BoVoyageFinalProject.Models
 
         [ForeignKey("CustomerId")]
         public Customer Customer { get; set; }
-                
+
         public int TravelId { get; set; }
 
         [ForeignKey("TravelId")]
@@ -29,7 +30,7 @@ namespace BoVoyageFinalProject.Models
 
         [Required(ErrorMessage = "Le champ {0} est obligatoire.")]
         [Display(Name = "Numéro de carte de crédit")]
-		[CreditCardCustomAttribute]
+        [CreditCardCustomAttribute]
         public string CreditCardNumber { get; set; }
 
         [Display(Name = "Prix total")]
@@ -41,20 +42,20 @@ namespace BoVoyageFinalProject.Models
         [Display(Name = "Faites vous partie du voyage ?")]
         public bool IsCustomerTraveller { get; set; }
 
-		[Required]
-		[Display(Name = "Etat du dossier")]
-		public string BookingFileState { get; set; }
-
-		
-		[Display(Name = "Raison de l'annulation")]
-		public string BookingFileCancellationReason { get; set; }
+        [Required]
+        [Display(Name = "Etat du dossier")]
+        public string BookingFileState { get; set; }
 
 
-		public void GetTotalPrice()
+        [Display(Name = "Raison de l'annulation")]
+        public string BookingFileCancellationReason { get; set; }
+
+
+        public void GetTotalPrice()
         {
             TotalPrice = 0;
 
-            foreach(Traveller traveller in Travellers)
+            foreach (Traveller traveller in Travellers)
             {
                 var price = Travel.Price;
                 // Calcul de la réduction du prix par rapport à l'age du voyageur
@@ -82,6 +83,15 @@ namespace BoVoyageFinalProject.Models
             return placeNumber >= places;
         }
 
+        public bool CheckPlaceMaxCapacity()
+        {
+            if (IsCustomerTraveller)
+            {
+                return TravellersNumber <= 8;
+            }
+            return TravellersNumber <= 9;
+        }
+
         public void CheckSolvency()
         {
         }
@@ -96,10 +106,11 @@ namespace BoVoyageFinalProject.Models
 
         public ICollection<Traveller> Travellers { get; set; }
 
+        [Display(Name = "Assurances")]
         public ICollection<Insurance> Insurances { get; set; }
     }
 
-    
 
-   
+
+
 }
