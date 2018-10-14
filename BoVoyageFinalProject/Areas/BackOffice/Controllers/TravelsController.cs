@@ -42,7 +42,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         // GET: BackOffice/Travels/Create
         public ActionResult Create()
         {
-            ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Country");
+            ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Area");
             ViewBag.TravelAgencyID = new SelectList(db.TravelAgencys, "ID", "Name");
             return View();
         }
