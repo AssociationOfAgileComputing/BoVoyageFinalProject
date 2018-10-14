@@ -1,0 +1,35 @@
+﻿<form action="@Url.Action("Search", "Home")">
+    <div class="row">
+        <div class="col-sm-12 col-md-4">
+            <label>Pays:</label>
+            <div class="form-group">
+                <input type="text" name="pays" class="form-control input-sm full" placeholder="Pays">
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-2">
+            <label>Prix min:</label>
+            <div class="form-group">
+                <input type="number" name="prixMin" class="form-control input-sm full" placeholder="valeur minimale">
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-2">
+            <label>Prix max:</label>
+            <div class="form-group">
+                <input type="number" name="prixMax" class="form-control input-sm full" placeholder="valeur maximale">
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-2">
+            <label>Date aller:</label>
+            <div class="form-group">
+                <input type="date" name="dateAller" class="form-control input-sm full" placeholder="Date aller">
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-2">
+            <label>Date retour:</label>
+            <div class="form-group">
+                <input type="date" name="dateRetour" class="form-control input-sm full" placeholder="Date Retour">
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-info">Rechercher</button>
+</form>
