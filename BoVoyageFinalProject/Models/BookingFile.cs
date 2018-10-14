@@ -52,13 +52,24 @@ namespace BoVoyageFinalProject.Models
 
 		public void GetTotalPrice()
         {
-            int totalTravellers = TravellersNumber;
-            if (IsCustomerTraveller)
+            TotalPrice = 0;
+
+            foreach(Traveller traveller in Travellers)
             {
-                totalTravellers++;
+                var price = Travel.Price;
+                // Calcul de la réduction du prix par rapport à l'age du voyageur
+                if (traveller.Age < 12)
+                {
+                    price = price * 0.6m;
+                }
+                TotalPrice = TotalPrice + price;
             }
 
-            this.TotalPrice = ((Travel.Price * totalTravellers));
+            // Calcul par rapport aux assurances selectionnées
+            foreach (Insurance insurance in Insurances)
+            {
+                TotalPrice = TotalPrice + insurance.InsuranceCost;
+            }
         }
 
         public bool CheckPlaceNumber(int placeNumber)

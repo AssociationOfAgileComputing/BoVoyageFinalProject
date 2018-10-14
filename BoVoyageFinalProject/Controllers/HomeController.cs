@@ -116,6 +116,14 @@ namespace BoVoyageFinalProject.Controllers
         public ActionResult Reservation(int? id)
         {
             ViewBag.travel = db.Travels.SingleOrDefault(x => x.ID == id);
+
+            // Création de la liste des assurances a afficher sur la page de réservation
+            ViewBag.InsuranceList = db.Insurances.Select(x => new SelectListItem
+            {
+                Value = x.ID.ToString(),
+                Text = x.InsuranceType
+            }).ToList();
+
             if (Session["CUSTOMER"] == null)
             {
                 Display("Veuillez vous connecter à votre espace pour effectuer une réservation");
@@ -130,7 +138,7 @@ namespace BoVoyageFinalProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Reservation(int? id, [Bind(Include = "ID,CustomerId,TravelId,CreditCardNumber,TotalPrice,TravellersNumber,IsCustomerTraveller,BookingFileState,BookingFileCancellationReason")] BookingFile bookingFile)
+        public ActionResult Reservation(int? id, [Bind(Include = "ID,CustomerId,TravelId,CreditCardNumber,TotalPrice,TravellersNumber,IsCustomerTraveller,BookingFileState,BookingFileCancellationReason,Insurances")] BookingFile bookingFile, List<int> InsuranceList)
         {
             Travel travel = db.Travels.SingleOrDefault(x => x.ID == id);
             if (ModelState.IsValid)
@@ -142,11 +150,17 @@ namespace BoVoyageFinalProject.Controllers
                     return View();
                 }
 
+                // On récupère les assurances par rapport à la liste des assurances selectionnées et on ajoute à la réservation
+                foreach (int insuranceId in InsuranceList)
+                {
+                    bookingFile.Insurances.Add(db.Insurances.Find(insuranceId));
+                }
+
                 db.BookingFiles.Add(bookingFile);
                 db.SaveChanges();
                 Session["Travellers"] = bookingFile.TravellersNumber;
                 Display("Le voyage a été créé. Ajoutez maintenant les participants.");
-                return RedirectToAction("AddTravellers", new { id = bookingFile.ID });//Rediriger vers ajout participant
+                return RedirectToAction("AddTravellers", new { id = bookingFile.ID }); //Rediriger vers ajout participant
             }
             ViewBag.travel = db.Travels.SingleOrDefault(x => x.ID == id);
             return View();
@@ -161,7 +175,10 @@ namespace BoVoyageFinalProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddTravellers(int? id, List<Traveller> travellers)
         {
-            BookingFile bookingFile = db.BookingFiles.Include(x => x.Travel).SingleOrDefault(x => x.ID == id);
+            BookingFile bookingFile = db.BookingFiles
+                .Include(x => x.Travel)
+                .Include(x => x.Insurances)
+                .Include(x => x.Travellers).SingleOrDefault(x => x.ID == id);
 
             if (ModelState.IsValid)
             {
