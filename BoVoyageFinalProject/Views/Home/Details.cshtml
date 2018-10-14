@@ -53,6 +53,12 @@
                     @Html.DisplayFor(model => model.SpaceAvailable)
                 </dd>
                 <dt>
+                    @Html.DisplayNameFor(model => model.Destination.Description)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Destination.Description)
+                </dd>
+                <dt>
                     @Html.DisplayNameFor(model => model.Price)
                 </dt>
                 <dd>
@@ -65,7 +71,10 @@
             {
                 if (Model.Destination.Pictures.Count > 0)
                 {
-                    <img src="data:@Model.Destination.Pictures.First().ContentType;base64,@Convert.ToBase64String(Model.Destination.Pictures.First().Content)" class="img-thumbnail" />
+                    foreach (var pictures in @Model.Destination.Pictures)
+                    {
+                        <img src="data:@pictures.ContentType;base64,@Convert.ToBase64String(pictures.Content)" class="img-thumbnail" />
+                    }
                 }
             }
         </div>
