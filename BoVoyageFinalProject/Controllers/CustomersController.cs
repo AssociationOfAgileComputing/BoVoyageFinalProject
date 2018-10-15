@@ -1,10 +1,13 @@
 ﻿using BoVoyageFinalProject.Areas.BackOffice.Models;
 using BoVoyageFinalProject.Models;
 using BoVoyageFinalProject.Tools;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using BoVoyageFinalProject.Filters;
+using System.Web.Services.Description;
 
 namespace BoVoyageFinalProject.Controllers
 {
@@ -12,12 +15,14 @@ namespace BoVoyageFinalProject.Controllers
     {
 
         // GET: Customers
+        [Authentication(Type = "SALESMANAGER")]
         public ActionResult Index()
         {
             return View(db.Customers.ToList());
         }
 
         // GET: Customers/Details/5
+        [Authentication(Type = "CUSTOMER")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -66,6 +71,7 @@ namespace BoVoyageFinalProject.Controllers
         }
 
         // GET: Customers/Edit/5
+        [Authentication(Type = "CUSTOMER")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,6 +91,7 @@ namespace BoVoyageFinalProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authentication(Type = "CUSTOMER")]
         public ActionResult Edit([Bind(Include = "ID,BirthDate,PhoneNumber,AddressLine1,AddressLine2,ZIPCode,City,Country,Mail,Password,Title,FirstName,LastName, ConfirmedPassword")] Customer customer)
         {
             if (ModelState.IsValid)
@@ -102,6 +109,7 @@ namespace BoVoyageFinalProject.Controllers
         }
 
         // GET: Customers/Delete/5
+        [Authentication(Type = "SALESMANAGER")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -119,6 +127,7 @@ namespace BoVoyageFinalProject.Controllers
         // POST: Customers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authentication(Type = "SALESMANAGER")]
         public ActionResult DeleteConfirmed(int id)
         {
             Customer customer = db.Customers.Find(id);
