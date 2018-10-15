@@ -573,8 +573,6 @@
     <Content Include="Views\Shared\_PartialDisplay.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
-    <Content Include="Views\Home\SearchPrice.cshtml" />
-    <Content Include="Views\Home\SearchDate.cshtml" />
     <Content Include="Views\Home\Reservation.cshtml" />
     <Content Include="Views\Home\AddTravellers.cshtml" />
     <Content Include="Views\Shared\_PartialTravelSearch.cshtml" />
