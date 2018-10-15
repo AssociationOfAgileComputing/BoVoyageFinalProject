@@ -13,7 +13,7 @@ using BoVoyageFinalProject.Models;
 
 namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 {
-	//[Authentication]
+	[Authentication]
     public class BookingFilesController : BaseController
     {
         
@@ -33,7 +33,11 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 			
-			BookingFile bookingFile = db.BookingFiles.Include(x => x.Travellers).SingleOrDefault(x => x.ID == id);
+			BookingFile bookingFile = db.BookingFiles
+                .Include(x => x.Travellers)
+                .Include(x=>x.Customer)
+                .Include(x => x.Travel.Destination)
+                .SingleOrDefault(x => x.ID == id);
             if (bookingFile == null)
             {
                 return HttpNotFound();
@@ -107,7 +111,6 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
 
 		// GET: BackOffice/BookingFiles/Delete/5
 		
-		[ValidateAntiForgeryToken]
 		public ActionResult Delete(int? id)
         {
             if (id == null)
