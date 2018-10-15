@@ -9,7 +9,7 @@
 
 <div class="container">
     <div class="row">
-        <h3>TOP 5 des voyages les moins coûteux</h3>
+        <h3>TOP 5 des voyages les moins chers</h3>
         @if (Model.Top5Cheaper.Count() > 0)
         {
             foreach (var item in Model.Top5Cheaper)
@@ -51,12 +51,12 @@
         }
         else
         {
-            <p>Il n'y a aucun voyage dans le top 5 des voyages les moins coûteux.</p>
+            <p>Il n'y a aucun voyage dans le top 5 des voyages les moins chers.</p>
         }
     </div>
 
     <div class="row">
-        <h3>TOP 5 des voyages ayant un départ au plus tôt</h3>
+        <h3>TOP 5 des départs imminents</h3>
         @if (Model.Top5CloserDeparture.Count() > 0)
         {
             foreach (var item in Model.Top5CloserDeparture)
@@ -98,12 +98,12 @@
         }
         else
         {
-            <p>Il n'y a aucun voyage dans le top 5 des voyages ayant un départ au plus tôt.</p>
+            <p>Il n'y a aucun voyage dans le top 5 des départs imminents.</p>
         }
     </div>
 
     <div class="row">
-        <h3>TOP 5 des voyages dont le pays est le plus présent</h3>
+        <h3>TOP 5 des destinations</h3>
         @if (Model.Top5MaxAreaOccurencies.Count() > 0)
         {
             foreach (var item in Model.Top5MaxAreaOccurencies)
@@ -145,7 +145,7 @@
         }
         else
         {
-            <p>Il n'y a aucun voyage dans le top 5 des voyages dont le pays est le plus présent.</p>
+            <p>Il n'y a aucun voyage dans le top 5 des destinations.</p>
         }
     </div>
 </div>
