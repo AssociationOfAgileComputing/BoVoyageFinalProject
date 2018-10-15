@@ -40,3 +40,10 @@ textarea {
 i {
     color: aliceblue;
 }
+
+.required:after {
+    content: " *";
+    font-weight: bold;
+    color: red;
+    font-size:18px;
+}

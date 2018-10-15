@@ -23,9 +23,9 @@
             <option value="Madame">Madame</option>
         </select>
     </div>
-
+    
     <div class="form-group">
-        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-xs-6 col-sm-2 col-md-2" })
+        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-xs-6 col-sm-2 col-md-2 required" })
         @Html.EditorFor(model => model.FirstName, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.FirstName, null, new { @class = "text-danger" })
     </div>
