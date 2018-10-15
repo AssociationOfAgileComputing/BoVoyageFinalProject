@@ -92,6 +92,11 @@ namespace BoVoyageFinalProject.Models
             return TravellersNumber <= 9;
         }
 
+        public bool CheckEnoughTraveller()
+        {
+            return TravellersNumber > 0 || IsCustomerTraveller;
+        }
+
         public void CheckSolvency()
         {
         }
