@@ -15,7 +15,7 @@ namespace BoVoyageFinalProject.Controllers
     {
 
         // GET: Customers
-        [Authentication(Type = "SALESMANAGER")]
+        [Authentication(Type = "BO")]
         public ActionResult Index()
         {
             return View(db.Customers.ToList());
@@ -71,7 +71,7 @@ namespace BoVoyageFinalProject.Controllers
         }
 
         // GET: Customers/Edit/5
-        [Authentication(Type = "CUSTOMER")]
+        [Authentication(Type = "BO")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -109,7 +109,7 @@ namespace BoVoyageFinalProject.Controllers
         }
 
         // GET: Customers/Delete/5
-        [Authentication(Type = "SALESMANAGER")]
+        [Authentication(Type = "BO")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -127,7 +127,7 @@ namespace BoVoyageFinalProject.Controllers
         // POST: Customers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authentication(Type = "SALESMANAGER")]
+        [Authentication(Type = "BO")]
         public ActionResult DeleteConfirmed(int id)
         {
             Customer customer = db.Customers.Find(id);
