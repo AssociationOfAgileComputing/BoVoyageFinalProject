@@ -7,6 +7,7 @@ using BoVoyageFinalProject.Models;
 using System.Data.Entity;
 using System.Net;
 using BoVoyageFinalProject.Tools;
+using BoVoyageFinalProject.Filters;
 
 namespace BoVoyageFinalProject.Controllers
 {
@@ -115,6 +116,7 @@ namespace BoVoyageFinalProject.Controllers
         }
 
         //GET
+        [Authentication(Type = "CUSTOMER")]
         public ActionResult Reservation(int? id)
         {
             if (id == null)
@@ -145,6 +147,7 @@ namespace BoVoyageFinalProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authentication(Type = "CUSTOMER")]
         public ActionResult Reservation(int? id, [Bind(Include = "ID,CustomerId,TravelId,CreditCardNumber,TotalPrice,TravellersNumber,IsCustomerTraveller,BookingFileState,BookingFileCancellationReason,Insurances")] BookingFile bookingFile, List<int> InsuranceList)
         {
             Travel travel = db.Travels.SingleOrDefault(x => x.ID == id);
@@ -199,6 +202,7 @@ namespace BoVoyageFinalProject.Controllers
             return View();
         }
 
+        [Authentication(Type = "CUSTOMER")]
         public ActionResult AddTravellers(int? id)
         {
             if (id == null)
@@ -211,6 +215,7 @@ namespace BoVoyageFinalProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authentication(Type = "CUSTOMER")]
         public ActionResult AddTravellers(int? id, List<Traveller> travellers)
         {
             BookingFile bookingFile = db.BookingFiles
