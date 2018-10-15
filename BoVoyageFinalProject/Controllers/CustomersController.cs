@@ -71,7 +71,7 @@ namespace BoVoyageFinalProject.Controllers
         }
 
         // GET: Customers/Edit/5
-        [Authentication(Type = "BO")]
+        [Authentication(Type = "CUSTOMER")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
