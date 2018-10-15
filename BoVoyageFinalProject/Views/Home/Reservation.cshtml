@@ -17,7 +17,7 @@
     @Html.HiddenFor(modelItem => CustomerId)
     @Html.HiddenFor(modelItem => TravelId)
 
-    <p style="color: green; font-weight: bold">Nombre de place disponible : @travel.SpaceAvailable</p>
+    <p style="color: green; font-weight: bold">Nombre de place(s) disponible(s) : @travel.SpaceAvailable</p>
 
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
