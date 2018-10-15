@@ -145,12 +145,14 @@ namespace BoVoyageFinalProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Reservation(int? id, [Bind(Include = "ID,CustomerId,TravelId,CreditCardNumber,TotalPrice,TravellersNumber,IsCustomerTraveller,BookingFileState,BookingFileCancellationReason,Insurances")] BookingFile bookingFile, List<int> InsuranceList)
+        public ActionResult Reservation(int? id, [Bind(Include = "ID,CustomerId,TravelId,CreditCardNumber,TotalPrice,TravellersNumber," +
+            "IsCustomerTraveller,BookingFileState,BookingFileCancellationReason,Insurances")] BookingFile bookingFile, List<int> InsuranceList)
         {
             Travel travel = db.Travels.SingleOrDefault(x => x.ID == id);
             
             if (ModelState.IsValid)
             {
+                //Controle si le nombre de participants (y compris le client) est suffisant
                 if (!bookingFile.CheckEnoughTraveller())
                 {
                     ReservationActionBeforeRedirect(id);
