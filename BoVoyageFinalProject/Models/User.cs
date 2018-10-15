@@ -20,7 +20,7 @@ namespace BoVoyageFinalProject.Models
         [Required(ErrorMessage = "Le champ {0} est obligatoire.")]
         [Display(Name = "Mot de Passe")]
         [DataType(DataType.Password)]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{6,}$", ErrorMessage = "{0} incorrect.")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{6,}$", ErrorMessage = "Le mot de passe doit contenir 6 caractères dont 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial.")]
         [StringLength(150)]
         public string Password { get; set; }
 
