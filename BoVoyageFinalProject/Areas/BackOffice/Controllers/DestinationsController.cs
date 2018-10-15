@@ -20,7 +20,7 @@ namespace BoVoyageFinalProject.Areas.BackOffice.Controllers
         // GET: BackOffice/Destinations
         public ActionResult Index()
         {
-            return View(db.Destinations.ToList());
+            return View(db.Destinations.OrderBy(x=>x.Area).OrderBy(r=>r.Country).OrderBy(z=>z.Continent).ToList());
         }
 
         // GET: BackOffice/Destinations/Details/5
