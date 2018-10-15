@@ -154,6 +154,7 @@ namespace BoVoyageFinalProject.Controllers
             
             if (ModelState.IsValid)
             {
+                //Controle si le nombre de participants (y compris le client) est suffisant
                 if (!bookingFile.CheckEnoughTraveller())
                 {
                     ReservationActionBeforeRedirect(id);
