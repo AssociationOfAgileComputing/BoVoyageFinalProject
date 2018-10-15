@@ -167,9 +167,12 @@ namespace BoVoyageFinalProject.Controllers
                 }
 
                 // On récupère les assurances par rapport à la liste des assurances selectionnées et on ajoute à la réservation
-                foreach (int insuranceId in InsuranceList)
+                if (InsuranceList != null)
                 {
-                    bookingFile.Insurances.Add(db.Insurances.Find(insuranceId));
+                    foreach (int insuranceId in InsuranceList)
+                    {
+                        bookingFile.Insurances.Add(db.Insurances.Find(insuranceId));
+                    }
                 }
 
                 db.BookingFiles.Add(bookingFile);
