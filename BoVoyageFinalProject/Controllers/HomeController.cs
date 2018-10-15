@@ -148,8 +148,16 @@ namespace BoVoyageFinalProject.Controllers
         public ActionResult Reservation(int? id, [Bind(Include = "ID,CustomerId,TravelId,CreditCardNumber,TotalPrice,TravellersNumber,IsCustomerTraveller,BookingFileState,BookingFileCancellationReason,Insurances")] BookingFile bookingFile, List<int> InsuranceList)
         {
             Travel travel = db.Travels.SingleOrDefault(x => x.ID == id);
+            
             if (ModelState.IsValid)
             {
+                if (!bookingFile.CheckEnoughTraveller())
+                {
+                    ReservationActionBeforeRedirect(id);
+                    Display("Vous devez absolument avoir 1 participant ou participer vous même au voyage", MessageType.ERROR);
+                    return View();
+                }
+
                 // Controle si le nombre de place maximum n'est pas dépassé
                 if (!bookingFile.CheckPlaceMaxCapacity())
                 {
@@ -179,7 +187,13 @@ namespace BoVoyageFinalProject.Controllers
                 db.SaveChanges();
                 Session["Travellers"] = bookingFile.TravellersNumber;
                 Display("Le voyage a été créé. Ajoutez maintenant les participants.");
-                return RedirectToAction("AddTravellers", new { id = bookingFile.ID }); //Rediriger vers ajout participant
+                if (bookingFile.TravellersNumber > 0)
+                {
+                    return RedirectToAction("AddTravellers", new { id = bookingFile.ID }); //Rediriger vers ajout participant
+                }
+
+                AddTravellers(bookingFile.ID, new List<Traveller>());
+                return RedirectToAction("Summary", "Reservation", new { id = bookingFile.ID });
             }
             ReservationActionBeforeRedirect(id);
             return View();
@@ -204,7 +218,7 @@ namespace BoVoyageFinalProject.Controllers
                 .Include(x => x.Insurances)
                 .Include(x => x.Travellers).SingleOrDefault(x => x.ID == id);
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid )
             {
                 if (bookingFile.IsCustomerTraveller)
                 {
@@ -241,11 +255,8 @@ namespace BoVoyageFinalProject.Controllers
                 Display($"Ajout des participants pour le dossier de réservation {bookingFile.ID} effectué avec succès.");
                 return RedirectToAction("Summary", "Reservation", new { id = bookingFile.ID });
             }
-            else
-            {
-                ViewBag.Titles = getTitles();
-                return View(travellers);
-            }
+            ViewBag.Titles = getTitles();
+            return View(travellers);
         }
 
         private List<SelectListItem> getTitles()
