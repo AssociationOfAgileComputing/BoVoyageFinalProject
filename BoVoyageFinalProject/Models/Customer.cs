@@ -16,7 +16,7 @@ namespace BoVoyageFinalProject.Models
         public DateTime BirthDate { get; set; }
 
         [Required]
-        [Display(Name ="Numéro de téléphone")]
+        [Display(Name ="N° de téléphone")]
         [DataType(DataType.PhoneNumber,ErrorMessage ="Numéro de téléphone invalide")]
         public string PhoneNumber { get; set; }
 
